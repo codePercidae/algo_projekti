@@ -8,7 +8,10 @@ class Trie:
     #Add note checks if next note exists in current node's children. If not,
     #creates a new children node. Algorithm continues until the depth of 3 is
     #achieved and returns None
-    def add_note(self, current_node: Node, depth: int, noteblock) -> None:
+    def add_notes(self, noteblock):
+        return self._add_note_helper(self.root, 0, noteblock)
+
+    def _add_note_helper(self, current_node: Node, depth: int, noteblock) -> None:
         if depth > 0:
             current_node.frequency += 1
         if current_node.children[noteblock[depth-1]]:
