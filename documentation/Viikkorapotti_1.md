@@ -1,6 +1,6 @@
 # Viikkoraportti 1
 
-Aikaa käytetty: 5,5h
+Aikaa käytetty: 8h
 
 **Viikon aikana tehty**:
 - taustatutkimusta (Markovin ketjut yms)
