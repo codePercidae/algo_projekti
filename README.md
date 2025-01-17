@@ -16,12 +16,11 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaista musiikkia.
 ```
 poetry install
 ````
-
 2. Alusta projekti komennola
 ```
-poetry run invoke build`
+poetry run invoke build
 ```
 3. Käynnistä sovellus komennolla
 ```
-`poetry run invoke start`
+poetry run invoke start
 ```
