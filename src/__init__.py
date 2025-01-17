@@ -1,4 +1,5 @@
-from src.main import Main
+from main import Main
+
 
 app = Main()
-app.launch
+app.launch()

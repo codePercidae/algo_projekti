@@ -1,4 +1,4 @@
-from node import Node
+from .node import Node
 
 class Trie:
     #Initialize the tree, with root as "empty note"

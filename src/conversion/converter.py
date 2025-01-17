@@ -50,5 +50,5 @@ class Converter:
         return note_numbers
 
 
-
+# täytyy olla myös käänteinen konvertteri? from int to txt
 

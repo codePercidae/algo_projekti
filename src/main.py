@@ -1,5 +1,7 @@
 from conversion.converter import Converter
 from data_structures.trie import Trie
+from pathlib import Path
+
 class Main:
     def __init__(self):
         self.converter = Converter()
