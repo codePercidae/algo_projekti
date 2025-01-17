@@ -1,5 +1,5 @@
-from ..conversion.converter import Converter
-from ..data_structures.trie import Trie
+from conversion.converter import Converter
+from data_structures.trie import Trie
 class Main:
     def __init__(self):
         self.converter = Converter()
@@ -15,6 +15,3 @@ class Main:
         for i in range(len(inital_numbers)):
             self.trie.add_notes(inital_numbers[i:i+4])
         print('Model updated!')
-
-        
-        
