@@ -1,4 +1,9 @@
 #Vaatimusmäärittely
+opinto-ohjelma: tietojenkäsittelytieteen kandi+maisteri -ohjelma
+Käytetty kieli: python
+Muut osatut kielet:
+  - Haskell (sujuva)
+  - Java (jossain määrin)
 
 ##Sovelluksen tarkoitus
 Sovellusta voi kouluttaa abc-notaatiota sisältävillä tekstitiedostoilla. Kätetyn data pohjalta sovellus pystyy
