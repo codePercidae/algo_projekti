@@ -8,12 +8,9 @@ packages = [{include = "algo_projekti"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+invoke = "^2.2.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-
-[project.scripts]
-start = "python application/__init__.py"
