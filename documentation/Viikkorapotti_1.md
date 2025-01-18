@@ -22,4 +22,5 @@ kouluttanut mallia vaikka viidellä kappaleella, olisi mukavaa jos hänen ei tar
 käyttökerralla tehdä koko hommaa uudelleen. Trie siis varmaan pitäisi muuttaa johonkin talletettavaan
 muotoon, mutten ole varma miten.
 
-Seuraavaksi vuorossa on varsinaisen Markovin ketjun luominen
+
+Seuraavaksi vuorossa on varsinaisen Markovin ketjun kehitys ja testauksen aloitus.
