@@ -8,6 +8,10 @@ Muut osatut kielet:
   - Haskell (sujuva)
   - Java (jossain määrin)
 
+## Projektin ydin
+
+Projektin ydinalue on tuottaa sovellus joka pystyy tuottamaan uutta musiikkia
+
 ## Sovelluksen tarkoitus
 
 Sovellusta voi kouluttaa abc-notaatiota sisältävillä tekstitiedostoilla. Kätetyn data pohjalta sovellus pystyy

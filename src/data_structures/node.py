@@ -3,6 +3,13 @@
 #or not.
 class Node:
     def __init__(self, frequency: int, end: bool):
+        '''Creates a new node
+        Args:
+            frequency: a number representing how often node is traversed through
+            end: boolean signalling wether the path ends to current node
+        Returns:
+            Node    
+        '''
         self.children = {}
         self.frequency = frequency
-        self.end = end
+        self.end = end #onko tarpeellinen???
