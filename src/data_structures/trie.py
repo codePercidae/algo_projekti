@@ -4,8 +4,16 @@ class Trie:
     def __init__(self) -> Node:
         '''Initialize the tree, with root as "empty note'''
         self.root = Node(0, False)
+        self.depth = 0
 
-    def add_notes(self, noteblock) -> None:
+    def find_depth(self, current_node: Node, depth: int) -> int:
+        if len(current_node.children) > 0:
+            for freq, child in current_node.children.items():
+                new_depth = max(self.find_depth(child, depth + 1), depth)
+            return new_depth
+        return depth
+
+    def add_notes(self, noteblock: list) -> None:
         '''Application uses this to start the note insertion
         Args:
             noteblock: a list of a 4 integers
@@ -14,7 +22,7 @@ class Trie:
         '''
         return self._add_note_helper(self.root, 0, noteblock)
 
-    def _add_note_helper(self, current_node: Node, depth: int, noteblock) -> None:
+    def _add_note_helper(self, current_node: Node, depth: int, noteblock: list) -> None:
         '''Adds a block of notes into trie structure and updates
         each values frequency
         Args:
@@ -34,22 +42,23 @@ class Trie:
             #Tämä ehkä väärin??
             return self._add_note_helper(current_node.children[noteblock[depth]], depth + 1, noteblock)
     
-    def search(self, current_node: Node, noteblock, depth = 0) -> list:
+    def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
         '''Searches trie for possible future values
         Args:  current_node: points to current node of the trie. Starts always with the root
-            noteblock: noteblock: a list of a 3 integers
+            noteblock: noteblock: a list of integers
             depth: tracks how deep in the trie function currently is
         Retruns:
             List of tuples (x,y) where x is the future value, and y its frequency
             if no viable future value is found, returns empty list
         '''
         possible_notes = []
-        if depth == 3:
-            for note, child in current_node.children:
+        print('funktio' ,noteblock)
+        if depth == degree:
+            for note, child in current_node.children.items():
                 possible_notes.append((note, child.frequency))
             return possible_notes
-        if current_node.children[noteblock[depth]]:
-            return possible_notes + self.search(current_node[noteblock[depth]], depth + 1, noteblock)
+        if noteblock[depth] in current_node.children:
+            return possible_notes.extend(self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
         else: return possible_notes
                 
 

@@ -72,5 +72,7 @@ class Converter:
         ret = []
         for i in range(len(values)):
             for j in range(len(values)):
-                ret.append(values[i:j+1])
+                new = (values[i:j+1])
+                if new:
+                    ret.append(new)
         return ret
