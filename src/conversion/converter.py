@@ -67,3 +67,10 @@ class Converter:
 
 # täytyy olla myös käänteinen konvertteri? from int to txt
 
+
+    def chunk(self, values: list) -> list:
+        ret = []
+        for i in range(len(values)):
+            for j in range(len(values)):
+                ret.append(values[i:j+1])
+        return ret
