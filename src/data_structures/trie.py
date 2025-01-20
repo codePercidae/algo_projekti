@@ -39,7 +39,6 @@ class Trie:
             return self._add_note_helper(current_node.children[noteblock[depth]], depth + 1, noteblock)
         else:
             current_node.children[noteblock[depth]] = Node(1, True)
-            #Tämä ehkä väärin??
             return self._add_note_helper(current_node.children[noteblock[depth]], depth + 1, noteblock)
     
     def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
@@ -52,14 +51,15 @@ class Trie:
             if no viable future value is found, returns empty list
         '''
         possible_notes = []
-        print('funktio' ,noteblock)
-        if depth == degree:
+        if depth == degree or depth >= len(noteblock): 
             for note, child in current_node.children.items():
                 possible_notes.append((note, child.frequency))
             return possible_notes
-        if noteblock[depth] in current_node.children:
-            return possible_notes.extend(self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
-        else: return possible_notes
+        elif noteblock[depth] in current_node.children:
+            possible_notes.extend(self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
+            return possible_notes
+        else: 
+            return possible_notes
                 
 
             

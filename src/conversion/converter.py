@@ -9,6 +9,9 @@ class Converter:
             'a': 21, 'b': 23
         }
 
+    def apply_key(self, key: str) -> None:
+        pass
+
     def convert(self, filename: str) -> list:
         '''Searches for viable starting row in a file and
         passes it on to parse_row function
@@ -22,9 +25,11 @@ class Converter:
         converted_file = []
         file = open(filename)
         for row in file:
-            if row[0] in 'HIJKLMNOPQRSTUWXZmrsw%':
+            if row[0] in 'HIJLMNOPQRSTUWXZmrsw%':
                 pass
             elif row[0] in 'CDEFGAHB' and row[1] == ":":
+                pass
+            elif row[0] == 'K':
                 pass
             else:
                 converted_file.extend(self.parse_row(row.replace('\n', '')))
