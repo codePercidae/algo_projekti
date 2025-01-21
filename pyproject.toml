@@ -9,6 +9,7 @@ packages = [{include = "algo_projekti"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 invoke = "^2.2.0"
+pylint = "^3.3.3"
 
 
 [build-system]
