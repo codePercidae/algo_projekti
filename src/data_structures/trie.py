@@ -1,12 +1,19 @@
-from .node import Node
+from node import Node
 
 class Trie:
     def __init__(self) -> Node:
         '''Initialize the tree, with root as "empty note'''
         self.root = Node(0, False)
-        self.depth = 0
+        self.depth = 0 #tod näk turhake
 
-    def find_depth(self, current_node: Node, depth: int) -> int:
+    def find_depth(self, current_node: Node, depth: int) -> int: #tod näk turhake
+        '''Finds the depth of the trie
+        Args: 
+            current_node: points to current node of the trie, starts always from root
+            depth: carries the information how deep in the trie functio is, starts always as 0
+        Returns:
+            Integer representing the depth of the trie
+        '''
         if len(current_node.children) > 0:
             for freq, child in current_node.children.items():
                 new_depth = max(self.find_depth(child, depth + 1), depth)
@@ -16,7 +23,7 @@ class Trie:
     def add_notes(self, noteblock: list) -> None:
         '''Application uses this to start the note insertion
         Args:
-            noteblock: a list of a 4 integers
+            noteblock: a list of integers
         Returns:
             None
         '''
@@ -30,7 +37,8 @@ class Trie:
             depth: tracks how deep in the trie function currently is
             noteblock: a list of integers
         Returns:
-            None'''
+            None
+        '''
         if depth >= len(noteblock):
             return
         if depth > 0:
@@ -43,8 +51,9 @@ class Trie:
     
     def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
         '''Searches trie for possible future values
-        Args:  current_node: points to current node of the trie. Starts always with the root
-            noteblock: noteblock: a list of integers
+        Args:  
+            current_node: points to current node of the trie. Starts always with the root
+            noteblock: a list of integers
             depth: tracks how deep in the trie function currently is
         Retruns:
             List of tuples (x,y) where x is the future value, and y its frequency
@@ -60,8 +69,14 @@ class Trie:
             return possible_notes
         else: 
             return possible_notes
-                
-
-            
-
-
+        
+    def __str__(self):
+        return str(self.root)
+        
+if __name__ == '__main__':
+    trie = Trie()
+    trie.add_notes([1,2,3,4])
+    trie.add_notes([2,3,4,5])
+    trie.add_notes([1,3,5])
+    print(trie)
+    #tänne voipi jotai lisäillä jos siltä tuntuu

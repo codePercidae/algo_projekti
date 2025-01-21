@@ -1,6 +1,3 @@
-#Class node: children will be saved in form of key value pairs, where key is the note name
-#and value is the corresponding node. end tells wether the noteblock ends at the current note
-#or not.
 class Node:
     def __init__(self, frequency: int, end: bool):
         '''Creates a new node
@@ -13,3 +10,17 @@ class Node:
         self.children = {}
         self.frequency = frequency
         self.end = end #onko tarpeellinen???
+
+    def __str__(self):
+        children = '[]'
+        if self.children:
+            children = '['
+            for k, v in self.children.items():
+                children += ' ' + str(v)
+            children += ']'
+        return f'Node(freq: {self.frequency}, leaf: {self.end}, children: {children})'
+    
+if __name__ == '__main__':
+    node = Node(0, False)
+    node.children = {1: Node(0, False), 2: Node(0, False), 3: Node(1, True)}
+    print(node)
