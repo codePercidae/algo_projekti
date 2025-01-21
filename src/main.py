@@ -46,5 +46,6 @@ class Main:
         songs = [self.generate(deg) for i in range(10)]
         self.converter.reverse_converter(songs)
 
-app = Main()
-app.launch()
+if __name__ == '__main__':
+    app = Main()
+    app.launch()
