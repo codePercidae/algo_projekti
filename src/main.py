@@ -1,7 +1,6 @@
 from conversion.converter import Converter
 from data_structures.trie import Trie
 from markov import MarkovChain
-from pathlib import Path
 
 class Main:
     def __init__(self):
@@ -35,15 +34,17 @@ class Main:
         for lst in seq:
             self.trie.add_notes(lst)
         self.trie.depth = self.trie.find_depth(self.trie.root, 0)
+        print('Model updated!')
 
     def launch(self):
-        '''Launches the application
-        '''
+        '''Launches the application'''
         print('Hi, please give me a file address to begin!') 
         filename = input('Filename: ')
         self.train(filename)        
-        print('Model updated!')
         print('Maximum degree of the generation is now ', self.trie.depth)
         deg = int(input('Which degree of generation you wish to have? '))
-        self.generate(deg)
-        
+        songs = [self.generate(deg) for i in range(10)]
+        self.converter.reverse_converter(songs)
+
+app = Main()
+app.launch()
