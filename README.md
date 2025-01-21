@@ -10,6 +10,8 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaista musiikkia.
 
 - [Viikkoraportti 1](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_1.md)
 
+- [Viikkoraportti 2](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_2.md)
+
 ## Asennus
 
 1. Asenna riippuvuudet komennolla
