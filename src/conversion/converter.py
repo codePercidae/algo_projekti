@@ -1,4 +1,5 @@
 from math import copysign
+from utils import file_operations
 
 class Converter:
     def __init__(self):
@@ -146,21 +147,26 @@ class Converter:
 
 
     def reverse_converter(self, generated_lists: list) -> None:
-        #Ei ymmärrä sävellajia, toistaiseksi vain c-duuri/a-molli onnistuu
-        file = open('music.txt', 'a')
+        '''Turns generated list of integers into abc-format and
+        passes it to file operations for writing. 
+        Args:
+            generated_lists: lists of integers [[int]]
+        Retuns:
+            None
+        '''
+        #Edelleen ongelmia
+        buffer = []
         for song in generated_lists:
             row = '|'
             for i in song:
                 if i in self.numbers_to_notes:
                     row += self.numbers_to_notes[i]
                 else:
-                    #dunno???
+                    row += '^' + self.numbers_to_notes[i-1]
                     pass
-            row += '|\n'
-            file.write(row)
-            file.write('\n')
-            
-        file.close()
+            row += '|\n\n'
+            buffer.append(row)
+        file_operations.write('music.txt', buffer)
 
 
     def chunk(self, values: list) -> list:
