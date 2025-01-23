@@ -1,7 +1,9 @@
 from math import copysign
-from utils import file_operations
 
 class Converter:
+    '''Class for turning abc-formatted files into list of integers
+    and vice versa'''
+
     def __init__(self):
         '''Creates a dictionary for number/note relationship'''
         self.notes_to_numbers = {
@@ -15,7 +17,7 @@ class Converter:
             0: 'C', 2: 'D', 4: 'E', 'F': 5,
             7: 'G', 9: 'A', 11: 'B', 12: 'c',
             14: 'd', 16: 'e', 17: 'f', 19: 'g',
-            21: 'a', 23: 'b' 
+            21: 'a', 23: 'b'
         }
 
         self.keys = {
@@ -30,6 +32,11 @@ class Converter:
         self.key = 0
 
     def reset(self):
+        '''Resets the key~note relation and key back to original
+        Args:
+            None
+        Retuns
+            None'''
         self.key = 0
         self.notes_to_numbers = {
             'C': 0, 'D': 2, 'E': 4, 'F': 5,
@@ -51,6 +58,7 @@ class Converter:
             raise ValueError('Malformatted key!')
         self.key = self.keys[key]
         accidentals = abs(self.keys[key])
+        direction = 0
         if self.keys[key] > 0:
             note_to_change_i = 5
             note_to_change_c = 'F'
@@ -66,7 +74,7 @@ class Converter:
             self.notes_to_numbers[note_to_change_c.lower()] += direction
             note_to_change_i = (note_to_change_i + (7*direction)) % 12
             note_to_change_c = self.numbers_to_notes[note_to_change_i]
-        return 
+        return
 
     def convert(self, file: list) -> list:
         '''Searches for viable starting row in a file and
@@ -112,7 +120,7 @@ class Converter:
             elif c == '(':
                 chord_marking = True
             elif c == ')':
-                chord_marking = False 
+                chord_marking = False
             elif performance_marking or chord_marking or c in unallowed:
                 pass
             elif len(returned_notes) > 0 and c in '|[]:':
@@ -161,7 +169,6 @@ class Converter:
                     row += self.numbers_to_notes[i]
                 else:
                     row += '^' + self.numbers_to_notes[i-1]
-                    pass
             row += '|\n\n'
             abc_formatted.append(row)
         return abc_formatted

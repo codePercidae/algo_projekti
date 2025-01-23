@@ -2,9 +2,9 @@ from converter import Converter
 from data_structures.trie import Trie
 from markov import MarkovChain
 from utils import logger, file_operations
-from os import path
 
 class Main:
+    '''Class for main application'''
     def __init__(self):
         '''Initializes the application and links necessary elements to it
         '''
@@ -16,7 +16,9 @@ class Main:
         if degree < 0:
             print('Invalid degree!')
         if degree > self.trie.depth:
-            logger.info('Degree too large! Give smaller degree or train model with longer melodies.')
+            logger.info(
+                '''Degree too large! Give smaller degree or 
+                train model with longer melodies.''')
         generated_list = []
         for i in range(10):
             if i < degree:
@@ -28,7 +30,7 @@ class Main:
                     self.markov.choose(
                         self.trie.search(self.trie.root, generated_list[i:i+degree], degree)))
         return generated_list
-    
+
     def train(self, dataset: str, degree: int) -> None:
         res = file_operations.read(dataset)
         if res[0]:
@@ -46,9 +48,9 @@ class Main:
     def launch(self):
         '''Launches the application'''
         deg = int(input('Hi, please give me a degree of generation you wish to have (max 6): '))
-        print('Then the file that you wish to use for training!') 
+        print('Then the file that you wish to use for training!')
         filename = input('Filename: ')
-        self.train(filename, deg)        
+        self.train(filename, deg)
         songs = [self.generate(deg) for i in range(10)]
         abc_songs = self.converter.reverse_converter(songs)
         file_operations.write('music.txt',abc_songs)

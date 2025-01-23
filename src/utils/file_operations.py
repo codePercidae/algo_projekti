@@ -26,7 +26,7 @@ def read(file_address: str) -> tuple:
     '''
     payload = []
     try:
-        file = open(file_address)
+        file = open(file_address, 'r')
         payload = file.readlines()
         file.close()
         return (True, payload)
