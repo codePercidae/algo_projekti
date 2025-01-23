@@ -1,12 +1,12 @@
 # Viikkoraportti 2
 
-Aikaa käytetty viikossa: 4,5h
+Aikaa käytetty viikossa: 6h
 
 **Viikon aikana tehty:**
 
 - Markovin ketjuun perustuva sävelvalinta
-- Lisätty sävellajin huomiointi konvertteriin
 - Lisätty konvertteriin:
+    - Sävellajin huomiointi
     - Palautusmerkkien huomiointi
     - Oktaavien huomiointi
 - Lisätty käänteiskonvertteri 

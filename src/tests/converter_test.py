@@ -1,6 +1,6 @@
 import unittest
 import os
-from ..conversion.converter import Converter
+from converter import Converter
 
 class TestConverter(unittest.TestCase):
     def setUp(self):

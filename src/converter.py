@@ -53,7 +53,7 @@ class Converter:
         accidentals = abs(self.keys[key])
         if self.keys[key] > 0:
             note_to_change_i = 5
-            note_to_change_c = 'G'
+            note_to_change_c = 'F'
             direction = 1
         elif self.keys[key] < 0:
             note_to_change_i = 11
@@ -68,17 +68,16 @@ class Converter:
             note_to_change_c = self.numbers_to_notes[note_to_change_i]
         return 
 
-    def convert(self, filename: str) -> list:
+    def convert(self, file: list) -> list:
         '''Searches for viable starting row in a file and
         passes it on to parse_row function, or applies
         the current key onto note~int relation
         Args: 
-            filename: Name of the file to be converted
+            file: contents of the file, saved in list row by row
         Returns:
             Numerical representations of the notes, in a list
         '''
         converted_file = []
-        file = open(filename)
         for row in file:
             if row[0] in 'HIJLMNOPQRSTUWXZmrsw%':
                 pass
@@ -88,7 +87,6 @@ class Converter:
                 self.apply_key(row[2:].replace('\n', ''))
             else:
                 converted_file.extend(self.parse_row(row.replace('\n', '')))
-        file.close()
         return converted_file
 
     def parse_row(self, row: str) -> list:
@@ -101,7 +99,7 @@ class Converter:
             Numerical representations of the notes, in a list [int]
             If no viable symbol is found, returns empty list
         '''
-        unallowed = ' /<>"1234567890.~HLMOPSTuvzZ/n'
+        unallowed = ' /<>"1234567890.~HLMOPSTuvzZ/n}{'
         note_numbers = []
         returned_notes = {}
         performance_marking = False
@@ -155,7 +153,7 @@ class Converter:
             None
         '''
         #Edelleen ongelmia
-        buffer = []
+        abc_formatted = []
         for song in generated_lists:
             row = '|'
             for i in song:
@@ -165,21 +163,20 @@ class Converter:
                     row += '^' + self.numbers_to_notes[i-1]
                     pass
             row += '|\n\n'
-            buffer.append(row)
-        file_operations.write('music.txt', buffer)
+            abc_formatted.append(row)
+        return abc_formatted
 
 
-    def chunk(self, values: list) -> list:
+    def chunk(self, values: list, degree: int) -> list:
         '''Chops the converted list into sublists for training the trie
         Args:
             values: converted file as list of integers
+            degree: tells how long chopped lists are
         Returns:
-            all sublists of values in a list
+            sublists of values in a list [[int]]
         '''
+        #Tää ei ehkä ihan vielä toimi?
         ret = []
-        for i in range(len(values)):
-            for j in range(len(values)):
-                new = values[i:j+1]
-                if new:
-                    ret.append(new)
+        for i in range(len(values) - degree):
+            ret.append(values[i:i+degree])
         return ret
