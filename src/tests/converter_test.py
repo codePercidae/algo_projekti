@@ -35,7 +35,9 @@ class TestConverter(unittest.TestCase):
         })
     
     def test_conversion_returns_correct_ouput(self):
-        ret = self.c.convert(self.dir_name + '/convert_test_data.txt')
+        file = open(self.dir_name + '/convert_test_data.txt')
+        contents = file.readlines()
+        ret = self.c.convert(contents)
         self.assertListEqual(ret, [11,12,14,12,14,16,
         14,12,11,9,11,12,11,9,7,6,7,9,7,9,11,12,7,9,2,11,12,
         14,19,14,11,9,7,16,16,14,12,11,12,14,16,14,12,11,12,

@@ -1,5 +1,3 @@
-
-
 def write(file_address: str, buffer: list) -> bool:
     '''Writes given buffer to given file address
     Args:
@@ -24,13 +22,12 @@ def read(file_address: str) -> tuple:
     Returns:
         tuple: First argument is a bool, telling wether 
         operation was succesfull, and second is a list
-        containing the result
+        containing the result (bool, [[str]])
     '''
     payload = []
     try:
         file = open(file_address)
-        for row in file:
-            payload.append(row)
+        payload = file.readlines()
         file.close()
         return (True, payload)
     except:
