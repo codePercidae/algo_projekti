@@ -17,12 +17,24 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaista musiikkia.
 1. Asenna riippuvuudet komennolla
 ```
 poetry install
-````
-2. Alusta projekti komennola
 ```
-poetry run invoke build
-```
+
 3. Käynnistä sovellus komennolla
 ```
 poetry run invoke start
 ```
+
+## Ohjelman toiminta
+Sovellus kykenee luomaan tasaisesta kahdeksaosa-kulusta muodostuvia
+melodioita. Kaikki melodiat ovat 2/4 tahtilajissa. Käyttäjä saa
+päättää kuinka monen tahdin mittainen melodia on ja lisäksi minkä
+asteen generaatioita käytetään (rajattu kuitenkin maksimissaan kuudenteen
+asteeseen).
+
+Käyttäjä saa kouluttaa mallia omalla opetusdatallaan, kuitenkin seuraavat asiat kannattaa
+huomioida:
+- Ohjelma lukee vain .txt muotoisia tiedostoja
+- Nuottien on oltava abc-formaatissa
+- Opetuskappaleiden kannattaa olla samassa sävellajissa, mikäli halutaan koherentteja tuloksia
+- Mikäli datassa on virheitä, sovellus saattaa kaatua
+- Datan tulee olla koottuna yhteen tiedostoon
