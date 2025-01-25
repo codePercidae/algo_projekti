@@ -1,6 +1,6 @@
 # Algoritmi/tekoäly projekti
 
-Sovellus, jota voidaan opettaa tuottamaan yksinkertaista musiikkia.
+Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
 ## Dokumentaatio
 
@@ -19,7 +19,7 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaista musiikkia.
 poetry install
 ```
 
-3. Käynnistä sovellus komennolla
+2. Käynnistä sovellus komennolla
 ```
 poetry run invoke start
 ```

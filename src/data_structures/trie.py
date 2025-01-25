@@ -1,10 +1,16 @@
 from .node import Node
 
 class Trie:
+    '''Data structure that holds the frequencies of different note sequences'''
+
     def __init__(self) -> Node:
         '''Initialize the tree, with root as "empty note'''
         self.root = Node(0, False)
         self.depth = 0 #tod näk turhake
+
+    def __str__(self):
+        '''String representation of trie'''
+        return str(self.root)
 
     def find_depth(self, current_node: Node, depth: int) -> int: #tod näk turhake
         '''Finds the depth of the trie
@@ -15,7 +21,7 @@ class Trie:
             Integer representing the depth of the trie
         '''
         if len(current_node.children) > 0:
-            for freq, child in current_node.children.items():
+            for child in current_node.children.values():
                 new_depth = max(self.find_depth(child, depth + 1), depth)
             return new_depth
         return depth
@@ -27,9 +33,9 @@ class Trie:
         Returns:
             None
         '''
-        return self._add_note_helper(self.root, 0, noteblock)
+        return self._add_note_helper(self.root, noteblock)
 
-    def _add_note_helper(self, current_node: Node, depth: int, noteblock: list) -> None:
+    def _add_note_helper(self, current_node: Node, noteblock: list, depth = 0) -> None:
         '''Adds a block of notes into trie structure and updates
         each values frequency
         Args:
@@ -43,12 +49,10 @@ class Trie:
             return
         if depth > 0:
             current_node.frequency += 1
-        if noteblock[depth] in current_node.children:
-            return self._add_note_helper(current_node.children[noteblock[depth]], depth + 1, noteblock)
-        else:
+        if noteblock[depth] not in current_node.children:
             current_node.children[noteblock[depth]] = Node(1, True)
-            return self._add_note_helper(current_node.children[noteblock[depth]], depth + 1, noteblock)
-    
+        return self._add_note_helper(current_node.children[noteblock[depth]], noteblock, depth+1)
+
     def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
         '''Searches trie for possible future values
         Args:  
@@ -60,23 +64,17 @@ class Trie:
             if no viable future value is found, returns empty list
         '''
         possible_notes = []
-        if depth == degree or depth >= len(noteblock): 
+        if depth == degree or depth >= len(noteblock):
             for note, child in current_node.children.items():
                 possible_notes.append((note, child.frequency))
-            return possible_notes
         elif noteblock[depth] in current_node.children:
-            possible_notes.extend(self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
-            return possible_notes
-        else: 
-            return possible_notes
-        
-    def __str__(self):
-        return str(self.root)
-        
+            possible_notes.extend(
+                self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
+        return possible_notes
+
 if __name__ == '__main__':
     trie = Trie()
     trie.add_notes([1,2,3,4])
     trie.add_notes([2,3,4,5])
     trie.add_notes([1,3,5])
     print(trie)
-    #tänne voipi jotai lisäillä jos siltä tuntuu

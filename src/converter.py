@@ -99,7 +99,7 @@ class Converter:
 
     def parse_row(self, row: str) -> list:
         '''Filters unwanted symbols from the row and
-        turns note names into numbers accoring the key
+        turns note names into numbers according the key
         and accidental markings
         Args:
             row: a row of a file to be converted
@@ -164,12 +164,14 @@ class Converter:
         abc_formatted = []
         for song in generated_lists:
             row = '|'
-            for i in song:
-                if i in self.numbers_to_notes:
-                    row += self.numbers_to_notes[i]
+            for i, n in enumerate(song):
+                if n in self.numbers_to_notes:
+                    row += self.numbers_to_notes[n]
                 else:
-                    row += '^' + self.numbers_to_notes[i-1]
-            row += '|\n\n'
+                    row += '^' + self.numbers_to_notes[n-1]
+                if i > 0 and (i+1) % 4 == 0:
+                    row += '|'
+            row += '\n\n'
             abc_formatted.append(row)
         return abc_formatted
 

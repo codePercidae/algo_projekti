@@ -1,6 +1,6 @@
 # Viikkoraportti 2
 
-Aikaa käytetty viikossa: 6h
+Aikaa käytetty viikossa: 10h
 
 **Viikon aikana tehty:**
 
@@ -9,6 +9,7 @@ Aikaa käytetty viikossa: 6h
     - Sävellajin huomiointi
     - Palautusmerkkien huomiointi
     - Oktaavien huomiointi
-- Lisätty käänteiskonvertteri 
+- Lisätty käänteiskonvertteri
 - Pylint
 - Aloitettu testien teko pytestin avulla
+- Vähän paranneltu ohjelman toimintalogiikkaa

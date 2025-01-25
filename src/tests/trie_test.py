@@ -2,6 +2,7 @@ import unittest
 from data_structures.trie import Trie
 
 class TestTrie(unittest.TestCase):
+    '''Tests functioning of the trie data structure'''
     def setUp(self):
         pass
 

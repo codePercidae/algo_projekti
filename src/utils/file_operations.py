@@ -7,9 +7,8 @@ def write(file_address: str, buffer: list) -> bool:
         bool: True on succession and False on failure to write
     '''
     try:
-        file = open(file_address, 'w')
-        for string in buffer:
-            file.write(string)
+        file = open(file_address, 'w', encoding='t')
+        file.writelines(buffer)
         file.close()
         return True
     except:
@@ -22,11 +21,10 @@ def read(file_address: str) -> tuple:
     Returns:
         tuple: First argument is a bool, telling wether 
         operation was succesfull, and second is a list
-        containing the result (bool, [[str]])
+        containing the result (bool, [str])
     '''
-    payload = []
     try:
-        file = open(file_address, 'r')
+        file = open(file_address, 'r', encoding='t')
         payload = file.readlines()
         file.close()
         return (True, payload)
