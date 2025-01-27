@@ -12,6 +12,8 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
 - [Viikkoraportti 2](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_2.md)
 
+- [Viikkoraportti 3](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_3.md)
+
 ## Asennus
 
 1. Asenna riippuvuudet komennolla
@@ -38,3 +40,7 @@ huomioida:
 - Opetuskappaleiden kannattaa olla samassa sävellajissa, mikäli halutaan koherentteja tuloksia
 - Mikäli datassa on virheitä, sovellus saattaa kaatua
 - Datan tulee olla koottuna yhteen tiedostoon
+- Sovellus osaa hakea tiedoston nimellä suoraan, jos se on sijoitettu data-hakemistoon
+
+Sovellus tuottaa tiedoston joka sisältää 10 generoitua melodiaa. Mikäli käyttäjä ei toisin määrittele,
+tiedosto on aina music.txt niminen, ja ilmestyy data kansion sisälle.
