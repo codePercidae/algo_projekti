@@ -43,3 +43,17 @@ class TestConverter(unittest.TestCase):
         14,19,14,11,9,7,16,16,14,12,11,12,14,16,14,12,11,12,
         11,9,2,7,6,7,9,11,9,11,12,14,16,18,19,12,11,9,7,9,
         2,6,7,7])
+
+    def test_parse_row_returns_correct_output(self):
+        ret = self.c.parse_row('|C^deA|Bb_dg')
+        self.assertEqual(ret, [0,15,16,9,11,23,13,19])
+
+    def test_reverse_conversion_returns_correct_output(self):
+        cmaj_input = [[0,2,4,5,7,9,11]]
+        ret = self.c.reverse_convert(cmaj_input)
+        self.assertEqual(ret, ['|CDEF|GAB\n\n'])
+
+    def test_chunk_returns_correct_sizes_sublists(self):
+        ret = self.c.chunk([1,1,1,1,1,1,1,1,1,1,1], 4)
+        for lst in ret:
+            self.assertEqual(len(lst), 4)

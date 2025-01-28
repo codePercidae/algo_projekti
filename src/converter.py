@@ -2,10 +2,12 @@ from math import copysign
 
 class Converter:
     '''Class for turning abc-formatted files into list of integers
-    and vice versa'''
+    and vice versa. Supports key-signatures up to 7 accidentals.'''
 
     def __init__(self):
-        '''Creates a dictionary for number/note relationship'''
+        '''Create dictionaries for number/note relationships
+        and key signatures'''
+
         self.notes_to_numbers = {
             'C': 0, 'D': 2, 'E': 4, 'F': 5,
             'G': 7, 'A': 9, 'B': 11, 'c': 12,
@@ -14,7 +16,7 @@ class Converter:
         }
 
         self.numbers_to_notes = {
-            0: 'C', 2: 'D', 4: 'E', 'F': 5,
+            0: 'C', 2: 'D', 4: 'E', 5: 'F',
             7: 'G', 9: 'A', 11: 'B', 12: 'c',
             14: 'd', 16: 'e', 17: 'f', 19: 'g',
             21: 'a', 23: 'b'
@@ -32,11 +34,8 @@ class Converter:
         self.key = 0
 
     def reset(self):
-        '''Resets the key~note relation and key back to original
-        Args:
-            None
-        Retuns
-            None'''
+        '''Reset the key~note relation and key back to original.'''
+
         self.key = 0
         self.notes_to_numbers = {
             'C': 0, 'D': 2, 'E': 4, 'F': 5,
@@ -46,10 +45,10 @@ class Converter:
         }
 
     def apply_key(self, key: str) -> None:
-        '''Mutates the note-number relation to match
-        the key of the song
+        '''Mutate the note-number relation to match the key of the song
+
         Args:
-            key: string representing the key of the song
+            key: string representing the key of the song (Ex: C#m)
         Retuns:
             None
         '''
@@ -77,11 +76,12 @@ class Converter:
         return
 
     def convert(self, file: list) -> list:
-        '''Searches for viable starting row in a file and
-        passes it on to parse_row function, or applies
+        '''Search for viable starting row in a file and
+        pass it on to parse_row function, or apply
         the current key onto note~int relation
+
         Args: 
-            file: contents of the file, saved in list row by row
+            file: contents of the file, saved in list row by row [str]
         Returns:
             Numerical representations of the notes, in a list
         '''
@@ -98,16 +98,17 @@ class Converter:
         return converted_file
 
     def parse_row(self, row: str) -> list:
-        '''Filters unwanted symbols from the row and
-        turns note names into numbers according the key
-        and accidental markings
+        '''Filter unwanted symbols from the row and
+        turn note names into numbers according the key
+        and accidental markings.
+
         Args:
             row: a row of a file to be converted
         Returns:
             Numerical representations of the notes, in a list [int]
             If no viable symbol is found, returns empty list
         '''
-        unallowed = ' /<>"1234567890.~HLMOPSTuvzZ/n}{'
+        unallowed = ' /<>"1234567890.~HLMOPSTuvzZ/n}{`'
         note_numbers = []
         returned_notes = {}
         performance_marking = False
@@ -152,9 +153,9 @@ class Converter:
         return note_numbers
 
 
-    def reverse_converter(self, generated_lists: list) -> None:
-        '''Turns generated list of integers into abc-format and
-        passes it to file operations for writing. 
+    def reverse_convert(self, generated_lists: list) -> None:
+        '''Turn generated lists of integers into abc-format
+ 
         Args:
             generated_lists: lists of integers [[int]]
         Retuns:
@@ -177,14 +178,14 @@ class Converter:
 
 
     def chunk(self, values: list, degree: int) -> list:
-        '''Chops the converted list into sublists for training the trie
+        '''Chop the converted list into sublists for training the trie
+
         Args:
             values: converted file as list of integers
             degree: tells how long chopped lists are
         Returns:
             sublists of values in a list [[int]]
         '''
-        #Tää ei ehkä ihan vielä toimi?
         ret = []
         for i in range(len(values) - degree):
             ret.append(values[i:i+degree])

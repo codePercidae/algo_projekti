@@ -1,6 +1,6 @@
 import os
 
-dir = os.path.abspath(os.getcwd()) + '/data/'
+directory = os.path.abspath(os.getcwd()) + '/data/'
 
 def write(filename: str, buffer: list) -> bool:
     '''Write given buffer to given file address and return bool
@@ -11,7 +11,7 @@ def write(filename: str, buffer: list) -> bool:
     Returns:
         bool: True on succession and False on failure to write
     '''
-    file_address = dir + filename
+    file_address = directory + filename
     try:
         with open(file_address, 'w', encoding='utf-8') as file:
             file.writelines(buffer)
@@ -30,12 +30,11 @@ def read(filename: str) -> tuple:
         operation was succesfull, and second is a list
         containing the result (bool, [str])
     '''
-    file_address = dir + filename
-    print(file_address)
+    file_address = directory + filename
     try:
         with open(file_address, 'r', encoding='utf-8') as file:
             payload = file.readlines()
             file.close()
             return (True, payload)
-    except:
+    except FileNotFoundError:
         return (False, ['Error occurred while trying to read the file'])
