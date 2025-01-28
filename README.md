@@ -26,6 +26,14 @@ poetry install
 poetry run invoke start
 ```
 
+## Muut komennot
+
+Aja testit komennolla
+```
+poetry run invoke test
+```
+
+
 ## Ohjelman toiminta
 Sovellus kykenee luomaan tasaisesta kahdeksaosa-kulusta muodostuvia
 melodioita. Kaikki melodiat ovat 2/4 tahtilajissa. Käyttäjä saa
@@ -38,6 +46,7 @@ huomioida:
 - Ohjelma lukee vain .txt muotoisia tiedostoja
 - Nuottien on oltava abc-formaatissa
 - Opetuskappaleiden kannattaa olla samassa sävellajissa, mikäli halutaan koherentteja tuloksia
+- Sovellus ei ymmärrä kirkkosävellajeja, pitäydy siis doorisessa, tai aiolisessa asteikossa
 - Mikäli datassa on virheitä, sovellus saattaa kaatua
 - Datan tulee olla koottuna yhteen tiedostoon
 - Sovellus osaa hakea tiedoston nimellä suoraan, jos se on sijoitettu data-hakemistoon
