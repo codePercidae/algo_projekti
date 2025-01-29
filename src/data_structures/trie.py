@@ -3,12 +3,12 @@ from .node import Node
 class Trie:
     '''Data structure that holds the frequencies of different note sequences'''
 
-    def __init__(self) -> Node:
+    def __init__(self) -> None:
         '''Initialize the tree, with root as "empty note'''
 
         self.root = Node(0)
 
-    def __str__(self):
+    def __str__(self) -> str:
         '''String representation of trie'''
 
         return str(self.root)
@@ -41,7 +41,7 @@ class Trie:
             return
         if noteblock[depth] not in current_node.children:
             current_node.add_child(noteblock[depth])
-        return self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
+            self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
 
     def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
         '''Search trie for possible future values
@@ -62,10 +62,3 @@ class Trie:
             possible_notes.extend(
                 self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
         return possible_notes
-
-if __name__ == '__main__':
-    trie = Trie()
-    trie.add_notes([1,2,3,4])
-    trie.add_notes([2,3,4,5])
-    trie.add_notes([1,3,5])
-    print(trie)

@@ -1,20 +1,13 @@
+'''Main module for melody generating application.'''
+
 from converter import Converter
 from data_structures.trie import Trie
 from ui.interface import Interface
 
-class Main:
-    '''Class for main application'''
-
-    def __init__(self):
-        '''Initialize the application.'''
-
-        self.interface = Interface(Trie(), Converter())
-
-    def launch(self):
-        '''Launch the application.'''
-
-        self.interface.mainmenu()
+def main():
+    '''Launch the application.'''
+    app = Interface(Trie(), Converter())
+    app.mainmenu()
 
 if __name__ == '__main__':
-    app = Main()
-    app.launch()
+    main()

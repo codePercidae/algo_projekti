@@ -34,6 +34,6 @@ class Node:
         return f'Node(freq: {self.frequency}, children: {children})'
 
 if __name__ == '__main__':
-    node = Node(0, False)
+    node = Node(0)
     node.children = {1: Node(0), 2: Node(0), 3: Node(1)}
     print(node)
