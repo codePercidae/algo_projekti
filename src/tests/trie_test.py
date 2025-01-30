@@ -28,5 +28,5 @@ class TestTrie(unittest.TestCase):
     def test_search_returns_empty_list(self):
         '''When no possible succession of values is found, return empty list.'''
 
-        res = self.t.search([2,3,4], 4)
+        res = self.t.search(self.t.root, [2,3,4], 4)
         self.assertEqual(res, [])

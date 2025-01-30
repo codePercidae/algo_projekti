@@ -41,7 +41,7 @@ class Trie:
             return
         if noteblock[depth] not in current_node.children:
             current_node.add_child(noteblock[depth])
-            self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
+        self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
 
     def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
         '''Search trie for possible future values
