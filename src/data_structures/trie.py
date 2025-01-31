@@ -43,7 +43,11 @@ class Trie:
             current_node.add_child(noteblock[depth])
         self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
 
-    def search(self, current_node: Node, noteblock: list, degree: int, depth = 0) -> list:
+    def search(self, noteblock: list, degree: int):
+            '''Start _search function. This is just to keep code clean and neat.'''
+            return self._search(self.root, noteblock, degree, 0)
+
+    def _search(self, current_node: Node, noteblock: list, degree: int, depth: int) -> list:
         '''Search trie for possible future values
 
         Args:  
@@ -60,5 +64,5 @@ class Trie:
                 possible_notes.append((note, child.frequency))
         elif noteblock[depth] in current_node.children:
             possible_notes.extend(
-                self.search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
+                self._search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
         return possible_notes

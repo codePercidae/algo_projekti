@@ -2,8 +2,7 @@
 
 from random import choices
 from functools import reduce
-from data_structures import trie
-
+from data_structures.trie import Trie
 
 def choose(values: list) -> int:
     '''Return one of given values, based on their weights
@@ -17,7 +16,7 @@ def choose(values: list) -> int:
     weights = map(lambda v: v[1]/total, values)
     return choices(values, weights).pop()[0]
 
-def generate(degree: int, length: int, structure: trie) -> list:
+def generate(degree: int, length: int, trie: Trie) -> list:
     '''Generate a list of integers
 
     Args:
@@ -29,14 +28,12 @@ def generate(degree: int, length: int, structure: trie) -> list:
     return_list = []
     for i in range(10):
         generated_list = []
-        for i in range(4*length):
-            if i < degree:
+        for j in range(4*length):
+            if j < degree:
                 generated_list.append(
-                    choose(structure.search(
-                        structure.root, generated_list[0:i], degree)))
+                    choose(trie.search(generated_list[0:j], j)))
             else:
                 generated_list.append(
-                    choose(structure.search(
-                        structure.root, generated_list[i:i+degree], degree)))
+                    choose(trie.search(generated_list[j:j+degree], degree)))
         return_list.append(generated_list)
     return return_list
