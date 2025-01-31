@@ -100,8 +100,25 @@ aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn²)*
         RETURN returnList
 ```
 
-**chunk** on apufunktio, joka pilkkoo annetun listan sopivan kokoisiksi osalistoiksi. Sen 
-aikavaatimus on 
-
 ## Tiedostokonvertteri
 
+Tiedostokonvertteri pitää sisällään funktiot abc-muotoisen tekstitiedoston kääntämisen 
+kokonaislukulistoiksi ja toisinpäin. Luokalla on seuraavat ominaisuudet:
+
+    - *notes_to_numbers*: sanakirja, jossa avaimina nuotin nimet kirjaimina, ja arvoina niiden kokonaisluku esitys
+    - *numbers_to_notes*: sama kuin yllä, mutta käänteisenä
+    - *keys*: sanakirja, jossa avaimina sävellajien lyhenteet ja arvoina niiden kokonaisluku esitys
+    - *key*: nykyisen sävellajin kokonaislukuesitys
+
+Kuvaus luokan funktioiden toiminnasta.
+
+**reset** palauttaa ominaisuuden *notes_to_numbers* arvot takaisin alkuperäiseksi. Aikavaatimus on valkioaikainen.
+
+**apply_key** saa argumentikseen sävellajin lyhenteen ja muuttaa ominaisuuden *notes_to_numbers* arvon vastaamaan sävellajia. Aikavaatimus vakioaikainen.
+
+**parse_row** saa argumentikseen yhden tiedoston rivin, ja muuntaa sen listaksi kokonaislukuja. Aikavaatimus on *O(n)*, jossa *n* on rivin pituus.
+
+**convert** saa argumentikseen listan, joka sisältää tiedoston jokaisen rivin omana merkkijononaan. Funktio etsii sitten riviä, joka halutaan kääntää ja löytäessään sellaisen, välittää rivin funktiolle 
+*parse_row*. Aikavaatimus on *(Omn)*, jossa *m* on tiedoston rivien määrä ja *n* pisimmän käännettävän rivin pituus.
+
+**reverse_convert** saa argumentikseen listan kokonaislukuja, ja kääntää sen abc-notaatioksi. Aikavaatimus on *O(n)*, jossa *n* on annetun listan pituus.
