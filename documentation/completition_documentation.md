@@ -83,8 +83,8 @@ jokaisen tuplen toisena arvona toimivaan painoon.
 trie-rakenteen, josta potentiaalisia arvoja haetaan ja palauttaa listan, jossa on 10 generoitua listaa.
 Funktio hyödyntää yllä mainittua *choose* -funktiota uusien arvojen valinnassa. Huomion arvoista on, että 
 generoitavan listan ensimmäiset *k* elementtiä, jossa *k < degree*, generoidaan *k* -asteen mukaisesti. 
-Funktion aikavaativuus on *O(n^2^O(nm))*, jossa *n=length* ja *O(nm)* vastaa *trien* funktion *search* 
-aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn^2^)* 
+Funktion aikavaativuus on *O(n²O(nm))*, jossa *n=length* ja *O(nm)* vastaa *trien* funktion *search* 
+aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn²)* 
 ```
     generate(degree, length, trie):
         returnList = []
