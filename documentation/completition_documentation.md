@@ -7,11 +7,15 @@ Sovellus on jaettu viiteen osaan:
     4. käyttöliittymä
     5. sekalaiset OS:n kanssa kommunikoivat elementit
 
+Tässä dokumentissä esitetään ensiksi jokaisen osan toiminnallisuus erikseen ja lopuksi 
+käydään läpi end-to-end -tyylinen toimintaselostus ja aikavaativuuksien esitys.
+
 ## 1. tietorakenteet
 
 ### Node
 
 Node on hyvin pitkälti klassista solmua vastaava luokka. Nodella on seuraavat ominaisuudet:
+
     - *frequency*: montako kertaa solmussa on vierailtu
     - *children*: sanakirja, johon talletetaan solmun lapset. Avain on lapsisolmun arvo ja varsinainen arvo itse lapsi
 
@@ -20,15 +24,16 @@ Kaikki Noden luokan funktiot ovat aikavaatimukseltaan luokkaa *O(1)*.
 ### Trie
 
 Trie hyödyntää luokkaa Node solmujen muodostuksessa. Triellä on vain yksi ominaisuus:
+
     - *root*: juurisolmu, jonka kautta solmujen lisäys ja arvojen haku tapahtuu
 
 Lyhyt selostus Trien funktioista:
 
 **add_notes** lisää annetun joukon solmuja Trieen. Lisäys alkaa aina juurisolmusta. 
-Funktio käy läpi listan values rekursiivisesti. Jokaisella rekursion asteella katsotaan, 
+Funktio käy läpi listan values rekursiivisesti. Jokaisella rekursion kerroksella katsotaan, 
 onko nykyisen solmun lapsisolmuissa seuraava listan arvo. Jos ei, lisätään arvo solmun lapsiin.
 Tämän jälkeen funktio kutsuu itseään uudelleen ja käsittelee lapsisolmun, kunnes koko annettu lista
-on käyty läpi. Funktion aikavaativuus on *O(n)*, missä n on listan values, pituus.
+on käyty läpi. Funktion aikavaativuus on *O(n)*, missä *n* on listan `values`, pituus.
 ```
     add_notes(current, values, depth)
         current.visit()
@@ -41,7 +46,7 @@ on käyty läpi. Funktion aikavaativuus on *O(n)*, missä n on listan values, pi
 
 **train** kutsuu *add_notes* funktiota kaikille saamilleen listoille. Näin ollen
 sen aikavaativuus on *O(mn)* missä *m* on *train* funktion saaman listan pituus ja *n* 
-kyseisen listan pisin sisäkkäinen lista.
+kyseisen listan pisimmän sisäkkäisen listan pituus.
 
 **search** etsii mahdollisia seuraavia arvoja annetulle joukolle. Funktio tutkii onko nykyisellä solmulla 
 sopivaa seuraajaa lastensa joukossa, jos on, kutsutaan funktiota uudelleen lapselle. Mikäli on päästy 
@@ -61,32 +66,42 @@ jokaisen lapsisolmun arvon ja frekvenssin talletettuna tuplena. *search* -funkti
         RETURN possibleValues
 ```
 
-## 2. markovin ketju
+## 2. Markovin ketju
 
-Moduulilla markov, on seuraavat funktiot:
+Moduuli markov on tarkoitettu Markovin ketjuun pohjautuvaan tilageneraatioon. Moduuli sisältää seuraavat 
+funktiot:
+
     - choose
     - generate
+    - chunk
 
-**choose**
-*choose* saa argumentikseen listan tupleja ja palauttaa yhden tuplen ensimmäisen arvon. Valinta perustuu
-jokaisen tuplen toisena arvona toimivaan painoon. AIKAVAATIVUUS EHKÄ O(N)?????
+**choose** saa argumentikseen listan tupleja ja palauttaa yhden tuplen ensimmäisen arvon. Valinta perustuu
+jokaisen tuplen toisena arvona toimivaan painoon.
 
 
-**generate**
-*generate* saa argumentikseen generoinnin asteen kokonaislukuna, generoitavien listojen pituuden, 
-trie-rakenteen, josta potentiaalisia arvoja haetaan ja palauttaa listan, jossa on 10 generoitua listaa. 
-
+**generate** saa argumentikseen generoinnin asteen kokonaislukuna, generoitavien listojen pituuden, 
+trie-rakenteen, josta potentiaalisia arvoja haetaan ja palauttaa listan, jossa on 10 generoitua listaa.
+Funktio hyödyntää yllä mainittua *choose* -funktiota uusien arvojen valinnassa. Huomion arvoista on, että 
+generoitavan listan ensimmäiset *k* elementtiä, jossa *k < degree*, generoidaan *k* -asteen mukaisesti. 
+Funktion aikavaativuus on *O(n^2^O(nm))*, jossa *n=length* ja *O(nm)* vastaa *trien* funktion *search* 
+aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn^2^)* 
 ```
     generate(degree, length, trie):
         returnList = []
-        FOR (i IN RANGE 10):
+        FOR (i=0 TO 10):
             generatedList = []
-            FOR (j IN RANGE(4*length)):
+            FOR (j=0 TO (4*length)):
                 IF j < degree:
-                    newValue = choose(trie.search(generatedList[0:j], degree))
+                    newValue = choose(trie.search(generatedList[0:j], j))
                 ELSE:
                     newValue = choose(trie.search(generatedList[j:j+degree], degree))
                 generatedList.append(newValue)
             returnList.append(returnList)
         RETURN returnList
 ```
+
+**chunk** on apufunktio, joka pilkkoo annetun listan sopivan kokoisiksi osalistoiksi. Sen 
+aikavaatimus on 
+
+## Tiedostokonvertteri
+

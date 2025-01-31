@@ -1,6 +1,6 @@
 # Viikkoraportti 3
 
-Aikaa käyetty viikossa 4,5h
+Aikaa käyetty viikossa 6h
 
 **Viikon aikana tehty:**
 
@@ -16,7 +16,3 @@ Seuraava vaihe on testien lisääminen ja dokumentaation parantelu. Sovelluksess
 edelleen toiminnallinen ongelma: Sovellus kääntää nuotit numeroiksi menestyksekkäästi,
 mutta toiseen suuntaan tilanne on vaikeampi. Sovellus ei tiedä onko nuotti alennettu vai ylennetty.
 Tämä ongelma täytyy vielä ratkaista, joskin se ei estä tuottamasta uusia melodioita.
-
-Tiedostossa markov.py on funktio choose, onko ok käyttää random moduulin funktiota choises
-generoinnin avuksi vai pitäisikö vastaava toiminnallisuus toteuttaa itse ilman valmista
-moduulia?
