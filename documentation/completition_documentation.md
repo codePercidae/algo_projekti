@@ -1,6 +1,7 @@
 # Toteutusdokumentti
 
 Sovellus on jaettu viiteen osaan:
+
     1. tietorakenteet
     2. markovin ketju
     3. tiedostokonvertteri
