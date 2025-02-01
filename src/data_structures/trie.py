@@ -44,8 +44,9 @@ class Trie:
         self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
 
     def search(self, noteblock: list, degree: int):
-            '''Start _search function. This is just to keep code clean and neat.'''
-            return self._search(self.root, noteblock, degree, 0)
+        '''Start _search function. This is just to keep code clean and neat.'''
+
+        return self._search(self.root, noteblock, degree, 0)
 
     def _search(self, current_node: Node, noteblock: list, degree: int, depth: int) -> list:
         '''Search trie for possible future values

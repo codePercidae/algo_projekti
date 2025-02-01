@@ -51,9 +51,9 @@ class Interface:
         converted_file = self.converter.convert(output[1])
         print('File converted')
 
-        self.degree = int(input('Then give the degree of generation (max 6) ')) + 1
+        self.degree = int(input('Then give the degree of generation (max 6) '))+1
         sequences = self.converter.chunk(converted_file, self.degree)
-        self.trie.train(sequences, self.degree)
+        self.trie.train(sequences)
         self.trained = True
         print('Model trained, to start generating music, enter G')
 

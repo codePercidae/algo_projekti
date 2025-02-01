@@ -88,13 +88,21 @@ aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn²)*
 ```
     generate(degree, length, trie):
         returnList = []
+
         FOR (i=0 TO 10):
             generatedList = []
             FOR (j=0 TO (4*length)):
+            sublist = []
+
                 IF j < degree:
-                    newValue = choose(trie.search(generatedList[0:j], j))
+                    FOR (k=0 to j):
+                        sublist.append(generatedList[k])
+                    newValue = choose(trie.search(sublist, k))
                 ELSE:
-                    newValue = choose(trie.search(generatedList[j:j+degree], degree))
+                    FOR (k=j to j+degree):
+                        sublist.append(generatedList[k])
+                    newValue = choose(trie.search(sublist, degree))
+
                 generatedList.append(newValue)
             returnList.append(returnList)
         RETURN returnList
@@ -122,3 +130,5 @@ Kuvaus luokan funktioiden toiminnasta.
 *parse_row*. Aikavaatimus on *(Omn)*, jossa *m* on tiedoston rivien määrä ja *n* pisimmän käännettävän rivin pituus.
 
 **reverse_convert** saa argumentikseen listan kokonaislukuja, ja kääntää sen abc-notaatioksi. Aikavaatimus on *O(n)*, jossa *n* on annetun listan pituus.
+
+**chunk** saa argumentikseen listan kokonaislukuja, jotka se pilkkoo annetun kokoisiksi osalistoiksi. Funktion aikavaatimus on teoriassa *O(n²)*, mutta käytännössa osalistojen koko on rajattu maksimissaan kuuteen, joten aikavaatimus yksinkertaistuu lineaariseksi *O(n)*, jossa *n* on annetun listan pituus.

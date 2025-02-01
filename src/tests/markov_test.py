@@ -1,6 +1,6 @@
 import unittest
-from markov import *
+from markov import choose, generate
 
 class TestMarkov(unittest.TestCase):
-    
+
     pass

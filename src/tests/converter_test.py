@@ -42,11 +42,11 @@ class TestConverter(unittest.TestCase):
             'd': 14, 'e': 15, 'f': 17, 'g':19,
             'a': 21, 'b': 22
         })
-    
+
     def test_conversion_returns_correct_ouput(self):
         '''Test that converting given data returns expected list of integers.'''
 
-        file = open(self.dir_name + '/convert_test_data.txt')
+        file = open(self.dir_name + '/convert_test_data.txt', 'r', encoding='utf-8')
         contents = file.readlines()
         ret = self.c.convert(contents)
         self.assertListEqual(ret, [11,12,14,12,14,16,

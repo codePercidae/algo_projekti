@@ -33,6 +33,25 @@ Aja testit komennolla
 poetry run invoke test
 ```
 
+Testikattavuus komennolla
+```
+poetry run invoke coverage
+```
+
+Raportti testikattavuudesta
+```
+poetry run invoke raport
+```
+
+HTML muotoinen raportti testikattavuudesta
+```
+poetry run invoke visualRaport
+```
+
+Linttaus komennolla
+```
+poetry run invoke lint
+```
 
 ## Ohjelman toiminta
 Sovellus kykenee luomaan tasaisesta kahdeksaosa-kulusta muodostuvia

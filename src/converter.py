@@ -1,4 +1,4 @@
-from math import copysign
+from math import copysign, floor
 
 class Converter:
     '''Class for turning abc-formatted files into list of integers
@@ -155,7 +155,7 @@ class Converter:
 
     def reverse_convert(self, generated_lists: list) -> None:
         '''Turn generated lists of integers into abc-format
- 
+
         Args:
             generated_lists: lists of integers [[int]]
         Retuns:
@@ -168,6 +168,12 @@ class Converter:
             for i, n in enumerate(song):
                 if n in self.numbers_to_notes:
                     row += self.numbers_to_notes[n]
+                elif abs(n%24) in self.numbers_to_notes:
+                    if n > 0:
+                        sign = '`'
+                    else:
+                        sign = '_'
+                    row += sign*floor(n/24) + self.numbers_to_notes[abs(n%24)]
                 else:
                     row += '^' + self.numbers_to_notes[n-1]
                 if i > 0 and (i+1) % 4 == 0:
