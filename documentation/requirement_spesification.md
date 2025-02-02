@@ -20,6 +20,7 @@ käyttäjän pyynnöstä generoimaan itse uutta musiikkia, joka palautetaan abc-
 ## Toiminnallisuus
 
 - Käyttäjä pystyy antamaan sovellukselle .txt -mutoisia tiedostoja
+- Käyttäjä pystyy määrittelemään generoinnin asteen
 - Sovellus oppii saatujen tiedostojen pohjalta
 - Sovellus pystyy luomaan uutta musiikkia
 - Sovellus palauttaa luomansa musiikin abc-notaationa .txt -tiedostona
@@ -28,5 +29,4 @@ käyttäjän pyynnöstä generoimaan itse uutta musiikkia, joka palautetaan abc-
 ## Mahdollisia lisäominaisuuksia
 
 - Käyttäjä voi kouluttaa usean eri mallin ja valita mitä niistä käyttää musiikin luomiseen
-- Käyttäjä voi valita miten entropista ulostulo on (Markovin ketjun asteen valinta)
 - Sovellus pystyy varioimaan myös aika-arvoja
