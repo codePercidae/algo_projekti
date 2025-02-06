@@ -1,8 +1,17 @@
+'''Class for turning abc-formatted files into list of integers
+    and vice versa. Supports key-signatures up to 7 accidentals.'''
 from math import copysign, floor
 
 class Converter:
-    '''Class for turning abc-formatted files into list of integers
-    and vice versa. Supports key-signatures up to 7 accidentals.'''
+    '''Class functions:
+    __init__: constructor
+    reset: reset note~int relation
+    apply_key: mutates note~int relation
+    convert: turn abc-file into list of integers
+    parse_row: perform the actual convresion
+    reverse_converter: turn integer lists into abc-file
+    chunk: chop the converted lists for future processing
+    '''
 
     def __init__(self):
         '''Create dictionaries for number/note relationships

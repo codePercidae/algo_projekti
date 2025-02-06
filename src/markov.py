@@ -12,9 +12,10 @@ def choose(values: list) -> int:
     Returns:
         int: one of the given values
     '''
-    total = reduce(lambda v, t : v + t[0], values, 0)
+    total = reduce(lambda v, t : v + t[1], values, 0)
     weights = map(lambda v: v[1]/total, values)
     return choices(values, weights).pop()[0]
+
 
 def generate(degree: int, length: int, trie: Trie) -> list:
     '''Generate a list of integers
@@ -25,15 +26,12 @@ def generate(degree: int, length: int, trie: Trie) -> list:
     Returns:
         list: a list of newly generated integers [[int]]
     '''
-    return_list = []
-    for i in range(10):
-        generated_list = []
-        for j in range(4*length):
-            if j < degree:
-                generated_list.append(
-                    choose(trie.search(generated_list[0:j], j)))
-            else:
-                generated_list.append(
-                    choose(trie.search(generated_list[j:j+degree], degree)))
-        return_list.append(generated_list)
-    return return_list
+    generated_list = []
+    for j in range(4*length):
+        if j < degree:
+            generated_list.append(
+                choose(trie.search(generated_list[0:j])))
+        else:
+            generated_list.append(
+                choose(trie.search(generated_list[j-degree:j])))
+    return generated_list

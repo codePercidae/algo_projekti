@@ -1,69 +1,86 @@
+'''Class for Trie data structure.'''
 from .node import Node
 
 class Trie:
-    '''Data structure that holds the frequencies of different note sequences'''
+    '''Class functions:
+        __init__: constructor
+        __str__: basic string representation
+        help_stringify: turn Trie into list with tuples, [(x,y)]
+        train: train Trie with given data
+        add_notes: add given values to Trie
+        search: look for possible future values from Trie
+        '''
 
     def __init__(self) -> None:
-        '''Initialize the tree, with root as "empty note'''
+        '''Initialize the tree, with root as "empty" note'''
 
         self.root = Node(0)
 
     def __str__(self) -> str:
-        '''String representation of trie'''
+        '''Return string representation of trie.'''
 
-        return str(self.root)
+        return str(self.help_stringify(0, self.root))
+    
+    def help_stringify(self, value: int, current: Node) -> list:
+        '''Turn trie into list representation via DFS.
+        
+        Args:
+            value: integer representing the node value
+            current: the current node to process
+        Returns:
+            a list with tuples (x,y), where x is nodes value
+            and y is it's frequency'''
+        ret = [(value, current.frequency)]
+        if current.children: #if current node has childen, recursively process them
+            for i, n in current.children.items():
+                ret.extend(self.help_stringify(i, n))
+        return ret
 
     def train(self, dataset: list) -> None:
         '''Train the trie with given data
 
         Args:
-            dataset: name of a file to be read
+            dataset: contents of the file, stored into a list row by row
         Returns:
             None
         '''
         for noteblock in dataset:
-            self.add_notes(self.root, noteblock)
+            self.add_notes(noteblock)
 
 
-    def add_notes(self, current_node: Node, noteblock: list, depth = 0) -> None:
+    def add_notes(self, noteblock: list) -> None:
         '''Add a block of notes into trie structure and update each values frequency
 
         Args:
-            current_node: points to current node of the trie. Starts always with the root
             noteblock: a list of integers
-            depth: tracks how deep in the trie function currently is
         Returns:
             None
         '''
-        if depth > 0:
-            current_node.visit()
-        if depth >= len(noteblock):
-            return
-        if noteblock[depth] not in current_node.children:
-            current_node.add_child(noteblock[depth])
-        self.add_notes(current_node.children[noteblock[depth]], noteblock, depth+1)
+        current_node = self.root #start from root
+        for note in noteblock: 
+            if note not in current_node.children:
+                current_node.children[note] = Node(0) 
+            current_node = current_node.children[note]
+            current_node.frequency += 1
 
-    def search(self, noteblock: list, degree: int):
-        '''Start _search function. This is just to keep code clean and neat.'''
-
-        return self._search(self.root, noteblock, degree, 0)
-
-    def _search(self, current_node: Node, noteblock: list, degree: int, depth: int) -> list:
+    def search(self, noteblock: list) -> list:
         '''Search trie for possible future values
 
-        Args:  
-            current_node: points to current node of the trie. Starts always with the root
+        Args:
             noteblock: a list of integers
-            depth: tracks how deep in the trie function currently is
         Retruns:
             List of tuples (x,y) where x is the future value, and y its frequency
             if no viable future value is found, returns empty list
         '''
-        possible_notes = []
-        if depth == degree or depth >= len(noteblock):
-            for note, child in current_node.children.items():
-                possible_notes.append((note, child.frequency))
-        elif noteblock[depth] in current_node.children:
-            possible_notes.extend(
-                self._search(current_node.children[noteblock[depth]], noteblock, degree, depth+1))
-        return possible_notes
+        returnList = []
+        current_node = self.root
+        #Use given notes to traverse the trie
+        for note in noteblock:
+            if note in current_node.children:
+                current_node = current_node.children[note]
+            else: 
+                return returnList
+        #Return final nodes children
+        for note, node in current_node.children.items():
+            returnList.append((note, node.frequency))
+        return returnList

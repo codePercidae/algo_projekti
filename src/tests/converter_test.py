@@ -27,7 +27,6 @@ class TestConverter(unittest.TestCase):
         '''Test that when key is applied, the note~integer relations is
         manipulated accordingly.'''
 
-        #Käydäänkö kaikki sävellajit läpi?
         self.c.apply_key('G')
         self.assertDictEqual(self.c.notes_to_numbers, {
             'C': 0, 'D': 2, 'E': 4, 'F': 6,

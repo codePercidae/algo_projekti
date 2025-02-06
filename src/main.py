@@ -6,6 +6,7 @@ from ui.interface import Interface
 
 def main():
     '''Launch the application.'''
+
     app = Interface(Trie(), Converter())
     app.mainmenu()
 
