@@ -19,6 +19,7 @@ Sovellusta voi kouluttaa abc-notaatiota sisältävillä tekstitiedostoilla. Kät
 ## Toiminnallisuus
 
 - Käyttäjä pystyy antamaan sovellukselle .txt -mutoisia tiedostoja
+- Käyttäjä pystyy määrittelemään generoinnin asteen
 - Sovellus oppii saatujen tiedostojen pohjalta
 - Sovellus pystyy luomaan uusia melodioita käyttäjän spesifioiman määrän
 - Sovellus palauttaa luomansa musiikin abc-notaationa .txt -tiedostona
@@ -27,5 +28,4 @@ Sovellusta voi kouluttaa abc-notaatiota sisältävillä tekstitiedostoilla. Kät
 ## Mahdollisia lisäominaisuuksia
 
 - Käyttäjä voi kouluttaa usean eri mallin ja valita mitä niistä käyttää musiikin luomiseen
-- Käyttäjä voi valita miten entropista ulostulo on (Markovin ketjun asteen valinta)
 - Sovellus pystyy varioimaan myös aika-arvoja

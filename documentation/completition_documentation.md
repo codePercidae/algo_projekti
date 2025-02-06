@@ -1,6 +1,7 @@
 # Toteutusdokumentti
 
 Sovellus on jaettu viiteen osaan:
+
     1. tietorakenteet
     2. markovin ketju
     3. tiedostokonvertteri
@@ -137,7 +138,10 @@ Kuvaus luokan funktioiden toiminnasta.
 **reverse_convert** saa argumentikseen listan kokonaislukuja, ja kääntää sen abc-notaatioksi. Aikavaatimus on *O(n)*, jossa *n* on annetun listan pituus.
 
 **chunk** saa argumentikseen listan kokonaislukuja, jotka se pilkkoo annetun kokoisiksi osalistoiksi. Funktion aikavaatimus on teoriassa *O(n²)*, mutta käytännössa osalistojen koko on rajattu maksimissaan kuuteen, joten aikavaatimus yksinkertaistuu lineaariseksi *O(n)*, jossa *n* on annetun listan pituus.
+<<<<<<< HEAD
 
 ## Käyttöliittymä
 
 Käyttöliittymä sitoo ohjelman eri osat toisiinsa ja välittää tietoa niiden välillä. 
+=======
+>>>>>>> ed62b0c5a6a7623ea1839f4751169b30fa5e6cee
