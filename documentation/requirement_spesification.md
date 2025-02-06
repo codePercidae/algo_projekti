@@ -10,18 +10,17 @@ Muut osatut kielet:
 
 ## Projektin ydin
 
-Projektin ydinalue on tuottaa sovellus joka pystyy tuottamaan uutta musiikkia
+Projektin ydinalue on tuottaa sovellus joka pystyy tuottamaan uusia melodioita
 
 ## Sovelluksen tarkoitus
 
-Sovellusta voi kouluttaa abc-notaatiota sisältävillä tekstitiedostoilla. Kätetyn data pohjalta sovellus pystyy
-käyttäjän pyynnöstä generoimaan itse uutta musiikkia, joka palautetaan abc-notaationa.
+Sovellusta voi kouluttaa abc-notaatiota sisältävillä tekstitiedostoilla. Kätetyn data pohjalta sovellus pystyy käyttäjän pyynnöstä generoimaan itse uutta musiikkia, joka palautetaan abc-notaationa.
 
 ## Toiminnallisuus
 
 - Käyttäjä pystyy antamaan sovellukselle .txt -mutoisia tiedostoja
 - Sovellus oppii saatujen tiedostojen pohjalta
-- Sovellus pystyy luomaan uutta musiikkia
+- Sovellus pystyy luomaan uusia melodioita käyttäjän spesifioiman määrän
 - Sovellus palauttaa luomansa musiikin abc-notaationa .txt -tiedostona
 - Sovellus luo vain tasaista kahdeksasosa-kulkua, rytmi on siis muuttumaton.
 

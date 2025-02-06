@@ -8,7 +8,12 @@ Sovellus on jaettu viiteen osaan:
     5. sekalaiset OS:n kanssa kommunikoivat elementit
 
 Tässä dokumentissä esitetään ensiksi jokaisen osan toiminnallisuus erikseen ja lopuksi 
-käydään läpi end-to-end -tyylinen toimintaselostus ja aikavaativuuksien esitys.
+käydään läpi end-to-end -tyylinen toimintaselostus ja aikavaativuuksien esitys. 
+
+Kaikki pseudokoodi esitykset eivät välttämättä vastaa ulkoasultaan sitä, mitä koodissa lopulta on.
+Tavoite on esittää mahdollisimman selkeästi ohjelman toimintaa ja jättää *siistit temput* varsinaisen koodin puolelle.
+
+Laajoja kielimalleja (ChatGPT, DeepSeek, yms.) ei ole sovelluksen toteutuksessa käytetty millään tavalla.
 
 ## 1. tietorakenteet
 
@@ -18,8 +23,6 @@ Node on hyvin pitkälti klassista solmua vastaava luokka. Nodella on seuraavat o
 
     - *frequency*: montako kertaa solmussa on vierailtu
     - *children*: sanakirja, johon talletetaan solmun lapset. Avain on lapsisolmun arvo ja varsinainen arvo itse lapsi
-
-Kaikki Noden luokan funktiot ovat aikavaatimukseltaan luokkaa *O(1)*.
 
 ### Trie
 
@@ -56,13 +59,16 @@ jokaisen lapsisolmun arvon ja frekvenssin talletettuna tuplena. *search* -funkti
 ```
     search(current, values, degree, depth)
         possibleValues = []
+
         IF depth == degree OR depth >= values.length
             FOR (node, child IN current.children):
                 tupleToReturn = (node, child.frequency)
                 possibleValues.append(tupleToReturn)
+
         ELSE IF values[depth] IN current.children:
             valuesToAdd = search(current.children[values[depth]], degree, depth+1)
             possibleValues.concat(valuesToAdd)
+
         RETURN possibleValues
 ```
 
@@ -73,7 +79,6 @@ funktiot:
 
     - choose
     - generate
-    - chunk
 
 **choose** saa argumentikseen listan tupleja ja palauttaa yhden tuplen ensimmäisen arvon. Valinta perustuu
 jokaisen tuplen toisena arvona toimivaan painoon.
@@ -132,3 +137,7 @@ Kuvaus luokan funktioiden toiminnasta.
 **reverse_convert** saa argumentikseen listan kokonaislukuja, ja kääntää sen abc-notaatioksi. Aikavaatimus on *O(n)*, jossa *n* on annetun listan pituus.
 
 **chunk** saa argumentikseen listan kokonaislukuja, jotka se pilkkoo annetun kokoisiksi osalistoiksi. Funktion aikavaatimus on teoriassa *O(n²)*, mutta käytännössa osalistojen koko on rajattu maksimissaan kuuteen, joten aikavaatimus yksinkertaistuu lineaariseksi *O(n)*, jossa *n* on annetun listan pituus.
+
+## Käyttöliittymä
+
+Käyttöliittymä sitoo ohjelman eri osat toisiinsa ja välittää tietoa niiden välillä. 

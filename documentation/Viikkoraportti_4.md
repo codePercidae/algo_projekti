@@ -1,3 +1,9 @@
 # Viikkoraportti
 
-Aikaa käytetty viikossa: 2,5h
+Aikaa käytetty viikossa: 4h
+
+## Viikon aikana tehty:
+
+    - lisää testejä
+    - lisää documentaatiota
+    - siistitty koodia
