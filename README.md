@@ -1,4 +1,4 @@
-# Algoritmi/tekoäly projekti
+# Tekoälyprojekti
 
 Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
@@ -58,9 +58,9 @@ poetry run invoke lint
 ## Ohjelman toiminta
 Sovellus kykenee luomaan tasaisesta kahdeksaosa-kulusta muodostuvia
 melodioita. Kaikki melodiat ovat 2/4 tahtilajissa. Käyttäjä saa
-päättää kuinka monen tahdin mittainen melodia on ja lisäksi minkä
+päättää kuinka monen tahdin mittainen melodia on, minkä
 asteen generaatioita käytetään (rajattu kuitenkin maksimissaan kuudenteen
-asteeseen).
+asteeseen) ja montako melodiaa generoidaan.
 
 Käyttäjä saa kouluttaa mallia omalla opetusdatallaan, kuitenkin seuraavat asiat kannattaa
 huomioida:
@@ -70,7 +70,8 @@ huomioida:
 - Sovellus ei ymmärrä kirkkosävellajeja, pitäydy siis doorisessa, tai aiolisessa asteikossa
 - Mikäli datassa on virheitä, sovellus saattaa kaatua
 - Datan tulee olla koottuna yhteen tiedostoon
+- Dataa kannattaa olla paljon, muutoin generointi saattaa päätyä tilanteeseen, jossa uusia arvoja ei enää löydy
 - Sovellus osaa hakea tiedoston nimellä suoraan, jos se on sijoitettu data-hakemistoon
 
-Sovellus tuottaa tiedoston joka sisältää 10 generoitua melodiaa. Mikäli käyttäjä ei toisin määrittele,
+Sovellus tuottaa tiedoston joka sisältää generoidut melodiat. Mikäli käyttäjä ei toisin määrittele,
 tiedosto on aina music.txt niminen, ja ilmestyy data kansion sisälle.
