@@ -9,7 +9,7 @@ Sovellus on jaettu viiteen osaan:
     5. sekalaiset OS:n kanssa kommunikoivat elementit
 
 Tässä dokumentissä esitetään ensiksi jokaisen osan toiminnallisuus erikseen ja lopuksi 
-käydään läpi end-to-end -tyylinen toimintaselostus ja aikavaativuuksien esitys. 
+käydään läpi end-to-end -tyylinen toimintaselostus ja aikavaativuuksien esitys. OS-elementit jätän tässä dokumentissa huomiotta.
 
 Kaikki pseudokoodi esitykset eivät välttämättä vastaa ulkoasultaan sitä, mitä koodissa lopulta on.
 Tavoite on esittää mahdollisimman selkeästi ohjelman toimintaa ja jättää *siistit temput* varsinaisen koodin puolelle.
@@ -80,13 +80,12 @@ funktiot:
 **choose** saa argumentikseen listan tupleja ja palauttaa yhden tuplen ensimmäisen arvon. Valinta perustuu
 jokaisen tuplen toisena arvona toimivaan painoon.
 
-
 **generate** saa argumentikseen generoinnin asteen kokonaislukuna, generoitavien listojen pituuden, 
 trie-rakenteen, josta potentiaalisia arvoja haetaan ja palauttaa listan, jossa on 10 generoitua listaa.
 Funktio hyödyntää yllä mainittua *choose* -funktiota uusien arvojen valinnassa. Huomion arvoista on, että 
 generoitavan listan ensimmäiset *k* elementtiä, jossa *k < degree*, generoidaan *k* -asteen mukaisesti. 
-Funktion aikavaativuus on *O(n²O(nm))*, jossa *n=length* ja *O(nm)* vastaa *trien* funktion *search* 
-aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn²)* 
+Funktion aikavaativuus on *O(nO(lm))*, jossa *n=length* ja *O(lm)* vastaa *trien* funktion *search* 
+aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(lmn)* 
 ```
     generate(degree, length, trie):
         returnList = []
@@ -97,11 +96,11 @@ aikavaatimusta. Tämä voidaan kirjoittaa sievemmin muotoon *O(mn²)*
             sublist = []
 
                 IF j < degree:
-                    FOR (k=0 to j):
+                    FOR (k=0 TO j):
                         sublist.append(generatedList[k])
                     newValue = choose(trie.search(sublist, k))
                 ELSE:
-                    FOR (k=j to j+degree):
+                    FOR (k=j-degree TO j):
                         sublist.append(generatedList[k])
                     newValue = choose(trie.search(sublist, degree))
 
@@ -137,4 +136,11 @@ Kuvaus luokan funktioiden toiminnasta.
 
 ## Käyttöliittymä
 
-Käyttöliittymä sitoo ohjelman eri osat toisiinsa ja välittää tietoa niiden välillä. 
+Käyttöliittymä sitoo ohjelman eri osat toisiinsa ja välittää tietoa niiden välillä. Käyttöliittymällä on pääasiassa kaksi eri toimintoa: koulutus ja generointi. Käyn nyt läpi näiden molempien tointaa.
+
+**Koulutus**
+Kouluttamiseen sisältyy seuraavat vaiheet: tiedoston luku, konvertointi, konvertoidun materiaalin pilkkominen ja materiaalin lisääminen Trieen. Suurin pullonkaula on todennäköisesti tiedoston konvertointi, sillä tiedostot pitävät sisällään paljon dataa, jota ei käytetä mitenkään.  
+
+
+**Generointi**
+Genrointi koostuu uuden datan generoinnista, sen konvertoinnista ja lopulta tiedostoon kirjoittamisesta. Datan generointi on aika-intensiivisin vaihe. Sillä jokaisen uuden arvon generointiin tarvitaan Trien *search* funktiota ja haettujen arvojen valinta.

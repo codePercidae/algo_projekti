@@ -73,6 +73,9 @@ class Interface:
         print('File converted')
 
         self.degree = int(input('Then give the degree of generation (max 6) '))
+        if self.degree > 6:
+            print('Degree too large!')
+            return
         sequences = self.converter.chunk(converted_file, self.degree+1)
         self.trie.train(sequences)
         self.trained = True
