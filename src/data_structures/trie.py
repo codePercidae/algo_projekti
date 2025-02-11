@@ -47,7 +47,6 @@ class Trie:
         for noteblock in dataset:
             self.add_notes(noteblock)
 
-
     def add_notes(self, noteblock: list) -> None:
         '''Add a block of notes into trie structure and update each values frequency
 
@@ -72,15 +71,15 @@ class Trie:
             List of tuples (x,y) where x is the future value, and y its frequency
             if no viable future value is found, returns empty list
         '''
-        returnList = []
+        possibleValues = []
         current_node = self.root
         #Use given notes to traverse the trie
         for note in noteblock:
             if note in current_node.children:
                 current_node = current_node.children[note]
             else: 
-                return returnList
+                return possibleValues
         #Return final nodes children
         for note, node in current_node.children.items():
-            returnList.append((note, node.frequency))
-        return returnList
+            possibleValues.append((note, node.frequency))
+        return possibleValues

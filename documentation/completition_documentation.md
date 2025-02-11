@@ -14,7 +14,7 @@ käydään läpi end-to-end -tyylinen toimintaselostus ja aikavaativuuksien esit
 Kaikki pseudokoodi esitykset eivät välttämättä vastaa ulkoasultaan sitä, mitä koodissa lopulta on.
 Tavoite on esittää mahdollisimman selkeästi ohjelman toimintaa ja jättää *siistit temput* varsinaisen koodin puolelle.
 
-Laajoja kielimalleja (ChatGPT, DeepSeek, yms.) ei ole sovelluksen toteutuksessa käytetty millään tavalla.
+Laajoja kielimalleja (ChatGPT, DeepSeek, CoPilot, yms.) ei ole sovelluksen toteutuksessa käytetty millään tavalla.
 
 ## 1. tietorakenteet
 
@@ -33,19 +33,20 @@ Trie hyödyntää luokkaa Node solmujen muodostuksessa. Triellä on vain yksi om
 
 Lyhyt selostus Trien funktioista:
 
+**help_stringify** on apuna Trien visualisoinnissa. Käytännössä funktio suorittaa syvyyshaun Trielle ja palauttaa listan, johon on talletettu solmut ja niiden frekvenssit tupleina. *help_stringify*:n aikavaativuus on, *O(n)*
+
 **add_notes** lisää annetun joukon solmuja Trieen. Lisäys alkaa aina juurisolmusta. 
-Funktio käy läpi listan values rekursiivisesti. Jokaisella rekursion kerroksella katsotaan, 
+Funktio käy läpi listan values iteratiivisesti. Jokaisella iteraatiolla katsotaan, 
 onko nykyisen solmun lapsisolmuissa seuraava listan arvo. Jos ei, lisätään arvo solmun lapsiin.
-Tämän jälkeen funktio kutsuu itseään uudelleen ja käsittelee lapsisolmun, kunnes koko annettu lista
-on käyty läpi. Funktion aikavaativuus on *O(n)*, missä *n* on listan `values`, pituus.
+Tämän jälkeen päivitetään käsiteltävä solmu ja jatketaan, kunnes kaikki listan arvot on käsitelty. Funktion aikavaativuus on *O(n)*, missä *n* on listan `values`, pituus.
 ```
-    add_notes(current, values, depth)
-        current.visit()
-        IF depth >= values.length
-             return
-        IF values[depth] NOT IN current.children
-            current.add_child(values[depth])
-        RETURN add_notes(current.children[values[depth]], values, depth+1)
+    add_notes(values)
+        current_node = self.root
+        FOR (value IN values):
+            IF (value NOT IN current_node.children):
+                current_node.children.add(value, New Node(0))
+            current_node = current_node.children[value]
+            current_node.frequency += 1
 ```
 
 **train** kutsuu *add_notes* funktiota kaikille saamilleen listoille. Näin ollen
@@ -53,23 +54,18 @@ sen aikavaativuus on *O(mn)* missä *m* on *train* funktion saaman listan pituus
 kyseisen listan pisimmän sisäkkäisen listan pituus.
 
 **search** etsii mahdollisia seuraavia arvoja annetulle joukolle. Funktio tutkii onko nykyisellä solmulla 
-sopivaa seuraajaa lastensa joukossa, jos on, kutsutaan funktiota uudelleen lapselle. Mikäli on päästy 
-argumentin *degree* osoittamaan syvyyteen, palautetaan nykyisen solmun lapset listassa, joka sisältää
-jokaisen lapsisolmun arvon ja frekvenssin talletettuna tuplena. *search* -funktion aikavaativuus on 
-*O(n+m)*, jossa *n* on listan values pituus ja *m* viimeisen solmun lapsien lukumäärä.
+sopivaa seuraajaa lastensa joukossa käsiteltävänä olevalle arvolle. Tätä toistetaan kunnes annettu lista on käyty läpi. Tämän jälkeen viimeisimmän käsiteltävänä olleen solmun lapset, ja niiden frekvenssit palautetaan tupleina. *search* -funktion aikavaativuus on *O(n+m)*, jossa *n* on listan values pituus ja *m* viimeisen solmun lapsien lukumäärä.
 ```
-    search(current, values, degree, depth)
+    search(values)
         possibleValues = []
-
-        IF depth == degree OR depth >= values.length
-            FOR (node, child IN current.children):
-                tupleToReturn = (node, child.frequency)
-                possibleValues.append(tupleToReturn)
-
-        ELSE IF values[depth] IN current.children:
-            valuesToAdd = search(current.children[values[depth]], degree, depth+1)
-            possibleValues.concat(valuesToAdd)
-
+        current_node = self.root
+        FOR (value IN values):
+            IF (value IN current_node.children):
+                current_node = current_node.children[value]
+            ELSE:
+                RETURN possibleValues
+        FOR (value, node IN current_node.children.items()):
+            possibleValues.append((value, node.frequency))
         RETURN possibleValues
 ```
 
@@ -138,10 +134,7 @@ Kuvaus luokan funktioiden toiminnasta.
 **reverse_convert** saa argumentikseen listan kokonaislukuja, ja kääntää sen abc-notaatioksi. Aikavaatimus on *O(n)*, jossa *n* on annetun listan pituus.
 
 **chunk** saa argumentikseen listan kokonaislukuja, jotka se pilkkoo annetun kokoisiksi osalistoiksi. Funktion aikavaatimus on teoriassa *O(n²)*, mutta käytännössa osalistojen koko on rajattu maksimissaan kuuteen, joten aikavaatimus yksinkertaistuu lineaariseksi *O(n)*, jossa *n* on annetun listan pituus.
-<<<<<<< HEAD
 
 ## Käyttöliittymä
 
 Käyttöliittymä sitoo ohjelman eri osat toisiinsa ja välittää tietoa niiden välillä. 
-=======
->>>>>>> ed62b0c5a6a7623ea1839f4751169b30fa5e6cee

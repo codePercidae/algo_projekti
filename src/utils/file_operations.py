@@ -1,3 +1,5 @@
+'''Module for file operations: read, write.'''
+
 import os
 import re
 
@@ -12,10 +14,6 @@ def write(filename: str, buffer: list) -> bool:
     Returns:
         bool: True on succession and False on failure to write
     '''
-    ##KORJAA REGEX
-    p = re.compile('*[.].txt') # make sure that filename ends into .txt
-    if not p.fullmatch(filename):
-        filename += '.txt'
     file_address = directory + filename
     try:
         with open(file_address, 'w', encoding='utf-8') as file:
