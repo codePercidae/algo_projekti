@@ -6,6 +6,10 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
 - [Vaatimusmäärittely](https://github.com/codePercidae/algo_projekti/blob/main/documentation/requirement_spesification.md)
 
+- [Toteutusdokumentti](https://github.com/codePercidae/algo_projekti/blob/main/documentation/completition_documentation.md)
+
+- [Testausdokumentti](https://github.com/codePercidae/algo_projekti/blob/main/documentation/test_documentation.md)
+
 ## Viikkoraportit
 
 - [Viikkoraportti 1](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_1.md)
