@@ -8,15 +8,15 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
 ## Viikkoraportit
 
-- [Viikkoraportti 1](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_1.md)
+- [Viikkoraportti 1](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_1.md)
 
-- [Viikkoraportti 2](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_2.md)
+- [Viikkoraportti 2](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_2.md)
 
-- [Viikkoraportti 3](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_3.md)
+- [Viikkoraportti 3](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_3.md)
 
-- [Viikkoraportti 4](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_4.md)
+- [Viikkoraportti 4](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_4.md)
 
-- [Viikkoraportti 5](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkorapotti_5.md)
+- [Viikkoraportti 5](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_5.md)
 
 ## Asennus
 
