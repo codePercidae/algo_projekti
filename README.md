@@ -81,3 +81,7 @@ huomioida:
 
 Sovellus tuottaa tiedoston joka sisältää generoidut melodiat. Mikäli käyttäjä ei toisin määrittele,
 tiedosto on aina music.txt niminen, ja ilmestyy data kansion sisälle.
+
+Lisää abc-notaatiosta löytyy sivulta https://abcnotation.com/
+
+Ja abc-notaatiolla tehtyjä kappaleita oman mallisi kouluttamista varten löytyy sivulta https://abcnotation.com/tunes
