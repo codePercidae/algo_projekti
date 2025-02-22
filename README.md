@@ -22,6 +22,8 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
 - [Viikkoraportti 5](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_5.md)
 
+- [Viikkoraportti 6](https://github.com/codePercidae/algo_projekti/blob/main/documentation/Viikkoraportti_6.md)
+
 ## Asennus
 
 1. Asenna riippuvuudet komennolla
