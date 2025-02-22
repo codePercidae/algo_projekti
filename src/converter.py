@@ -15,7 +15,14 @@ class Converter:
 
     def __init__(self):
         '''Create dictionaries for number/note relationships
-        and key signatures'''
+        and key signatures.
+        
+        Idea is that each half step equals one integer for example
+        C = 0 and C# = 1. Note that C# = Db = 1, so program is blind
+        to enharmonics.
+        
+        Keys are assigned via number of their accidentals, C = 0 and G = 1. 
+        Positive integer means sharps, and negative means flats.'''
 
         self.notes_to_numbers = {
             'C': 0, 'D': 2, 'E': 4, 'F': 5,
@@ -78,6 +85,7 @@ class Converter:
         elif self.keys[key] == 0:
             return
         for i in range(accidentals):
+            #this takes advantage of so called circle-of-fifths
             self.notes_to_numbers[note_to_change_c] += direction
             self.notes_to_numbers[note_to_change_c.lower()] += direction
             note_to_change_i = (note_to_change_i + (7*direction)) % 12

@@ -1,7 +1,6 @@
 '''Module for file operations: read, write.'''
 
 import os
-import re
 
 directory = os.path.abspath(os.getcwd()) + '/data/'
 
