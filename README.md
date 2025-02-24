@@ -26,6 +26,8 @@ Sovellus, jota voidaan opettaa tuottamaan yksinkertaisia melodioita.
 
 ## Asennus
 
+Asennus vaatii [Poetryn](https://python-poetry.org/)
+
 1. Asenna riippuvuudet komennolla
 ```
 poetry install

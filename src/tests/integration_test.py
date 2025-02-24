@@ -5,11 +5,20 @@ from markov import generate
 from converter import Converter
 from data_structures.trie import Trie
 from utils.file_operations import read, write
+import os
+
+PATH = os.path.abspath(os.getcwd()) + '/data/'
 
 class TestIntegration(unittest.TestCase):
-    
-    def test_training(self):
-        '''Test that from reading a file, to training trie, all works.'''
+
+    def tearDown(self):
+        os.remove(PATH + 'test_output.txt')
+
+    def test_integrated_system(self):
+        '''Test works in two parts: 
+            First check that trained trie is as expected.
+            Secondly make sure that generation works.
+        '''
 
         t = Trie()
         c = Converter()
@@ -27,7 +36,16 @@ class TestIntegration(unittest.TestCase):
             (14, 1), (14, 1), (19, 2), (19, 1), (16, 1), (17, 1), (16, 1),
             (17, 1), (17, 1), (17, 2), (17, 1), (16, 1), (16, 1), (16, 1),
             (16, 1), (14, 1)])
+
+        # Training sequence completed
         self.assertEqual(str(t), expected)
 
-    def test_generation(self):
-        pass
+        output = [generate(4, 1, t)]
+        rev_converted = c.reverse_convert(output)
+        write('test_output.txt', rev_converted)
+        filename = PATH + 'test_output.txt'
+        with open(filename) as f:
+            data = f.readlines()
+            #generation sequence completed
+            self.assertEqual(len(data), 2)
+            self.assertGreater(len(data[0]), 5)
