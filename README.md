@@ -89,3 +89,13 @@ tiedosto on aina music.txt niminen, ja ilmestyy data kansion sisälle.
 Lisää abc-notaatiosta löytyy sivulta https://abcnotation.com/
 
 Ja abc-notaatiolla tehtyjä kappaleita oman mallisi kouluttamista varten löytyy sivulta https://abcnotation.com/tunes
+
+## Mahdollisia ongelmia
+
+Mikäli kohtaat seuraavanlaisen virheilmoituksen:
+```
+File "/usr/lib/python3.10/random.py", line 533, in choices
+    total = cum_weights[-1] + 0.0   # convert to float
+IndexError: list index out of range
+```
+On generoinnin aikana tapahtunut kohtuullisen harvinainen tilanne, jossa sovellus ei löydä enää uusia mahdollisia arvoja generoitavaksi. Virhe on fataali, eikä sovellus toivu siitä. Kuitenkin käynnistämällä sovelluksen ja kokeilemalla samoja parametrejä uudestaan, pitäisi ongelman ratketa. 
