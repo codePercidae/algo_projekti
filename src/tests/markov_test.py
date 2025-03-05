@@ -1,12 +1,12 @@
+'''Module for testing markov chain functionality.'''
+
 import unittest
 from markov import choose, generate
 from data_structures.trie import Trie
 
 class TestMarkov(unittest.TestCase):
-    #testaa ettei mitään ylimääräistä löydy
-    #testaa että k-monikot löytyvät kaikki opetusdatasta
-    #vertaa opetusdataan
-    
+    '''Tests.'''
+
     def setUp(self):
         '''Set up the trie, and data used for testing.'''
 
@@ -25,7 +25,7 @@ class TestMarkov(unittest.TestCase):
         to make sure that no exceptions happen, while simultaneously making strong enough case
         that all generated material exists in original data.
         '''
-        def help():
+        def helper():
             ret = generate(3, 1, self.t)
             for i in range(len(ret)-4):
                 for j in range(len(self.data)-4):
@@ -34,7 +34,7 @@ class TestMarkov(unittest.TestCase):
                 else: return False
             return True
         for i in range(100):
-            self.assertTrue(help())
+            self.assertTrue(helper())
 
     def test_choose_returns_int_from_given_list(self):
         '''Test that choose returns one of values in given list
@@ -46,4 +46,3 @@ class TestMarkov(unittest.TestCase):
         for i in range(50):
             ret = choose(values_weights)
             self.assertIn(ret, values)
-

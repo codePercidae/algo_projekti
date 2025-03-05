@@ -1,9 +1,7 @@
 '''Module for file operations: read, write.'''
 
-from .config import FILE_PATH
 from os.path import join
-
-
+from .config import FILE_PATH
 
 def write(filename: str, buffer: list) -> bool:
     '''Write given buffer to given file address and return bool
@@ -20,7 +18,7 @@ def write(filename: str, buffer: list) -> bool:
             file.writelines(buffer)
             file.close()
             return True
-    except:
+    except NotADirectoryError:
         return False
 
 def read(filename: str) -> tuple:

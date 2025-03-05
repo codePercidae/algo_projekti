@@ -1,3 +1,5 @@
+'''Module for testing Trie.'''
+
 import unittest
 from data_structures.trie import Trie
 
@@ -37,5 +39,5 @@ class TestTrie(unittest.TestCase):
         self.t.add_notes([4,5,7])
         self.t.add_notes([1,3,2])
 
-        self.assertEqual(str(self.t), 
+        self.assertEqual(str(self.t),
             '[(0, 0), (1, 5), (2, 4), (3, 4), (4, 1), (5, 2), (6, 1), (3, 1), (2, 1), (4, 1), (5, 1), (7, 1)]')

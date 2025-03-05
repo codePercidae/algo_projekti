@@ -9,11 +9,12 @@ from utils.file_operations import read, write
 from utils.config import FILE_PATH
 
 class TestIntegration(unittest.TestCase):
+    '''Test integration.'''
 
     def tearDown(self):
         try:
             os.remove(FILE_PATH + '/test_output.txt')
-        except:
+        except FileNotFoundError:
             return
 
     def test_integrated_system(self):
@@ -51,3 +52,4 @@ class TestIntegration(unittest.TestCase):
             #generation sequence completed
             self.assertEqual(len(data), 2)
             self.assertGreater(len(data[0]), 5)
+            f.close()

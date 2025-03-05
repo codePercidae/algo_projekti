@@ -1,3 +1,5 @@
+'''Module for configuring file paths.'''
+
 import os
 from dotenv import load_dotenv
 

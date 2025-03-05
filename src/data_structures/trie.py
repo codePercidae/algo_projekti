@@ -20,7 +20,7 @@ class Trie:
         '''Return string representation of trie.'''
 
         return str(self.help_stringify(0, self.root))
-    
+
     def help_stringify(self, value: int, current: Node) -> list:
         '''Turn trie into list representation via DFS.
         
@@ -56,9 +56,9 @@ class Trie:
             None
         '''
         current_node = self.root #start from root
-        for note in noteblock: 
+        for note in noteblock:
             if note not in current_node.children:
-                current_node.children[note] = Node(0) 
+                current_node.children[note] = Node(0)
             current_node = current_node.children[note]
             current_node.frequency += 1
 
@@ -71,15 +71,15 @@ class Trie:
             List of tuples (x,y) where x is the future value, and y its frequency
             if no viable future value is found, returns empty list
         '''
-        possibleValues = []
+        possible_values = []
         current_node = self.root
         #Use given notes to traverse the trie
         for note in noteblock:
             if note in current_node.children:
                 current_node = current_node.children[note]
-            else: 
-                return possibleValues
+            else:
+                return possible_values
         #Return final nodes children
         for note, node in current_node.children.items():
-            possibleValues.append((note, node.frequency))
-        return possibleValues
+            possible_values.append((note, node.frequency))
+        return possible_values
