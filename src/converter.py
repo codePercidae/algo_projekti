@@ -178,7 +178,6 @@ class Converter:
         Retuns:
             None
         '''
-        #Edelleen ongelmia
         abc_formatted = []
         for song in generated_lists:
             row = '|'
