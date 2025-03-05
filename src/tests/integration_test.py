@@ -1,18 +1,20 @@
 '''Class for testing integrated parts of the application.'''
 
+import os
 import unittest
 from markov import generate
 from converter import Converter
 from data_structures.trie import Trie
 from utils.file_operations import read, write
-import os
-
-PATH = os.path.abspath(os.getcwd()) + '/data/'
+from utils.config import FILE_PATH
 
 class TestIntegration(unittest.TestCase):
 
     def tearDown(self):
-        os.remove(PATH + 'test_output.txt')
+        try:
+            os.remove(FILE_PATH + '/test_output.txt')
+        except:
+            return
 
     def test_integrated_system(self):
         '''Test works in two parts: 
@@ -43,7 +45,7 @@ class TestIntegration(unittest.TestCase):
         output = [generate(4, 1, t)]
         rev_converted = c.reverse_convert(output)
         write('test_output.txt', rev_converted)
-        filename = PATH + 'test_output.txt'
+        filename = os.path.join(FILE_PATH, 'test_output.txt')
         with open(filename) as f:
             data = f.readlines()
             #generation sequence completed

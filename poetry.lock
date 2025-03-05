@@ -41,10 +41,21 @@ graph = ["objgraph (>=1.7.2)"]
 profile = ["gprof2dot (>=2022.7.29)"]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+description = "Deprecated package"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+python-dotenv = "*"
+
+[[package]]
 name = "exceptiongroup"
 version = "1.2.2"
 description = "Backport of PEP 654 (exception groups)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -55,7 +66,7 @@ test = ["pytest (>=6)"]
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -90,7 +101,7 @@ python-versions = ">=3.6"
 name = "packaging"
 version = "24.2"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.8"
 
@@ -111,7 +122,7 @@ type = ["mypy (>=1.11.2)"]
 name = "pluggy"
 version = "1.5.0"
 description = "plugin and hook calling mechanisms for python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.8"
 
@@ -149,7 +160,7 @@ testutils = ["gitpython (>3)"]
 name = "pytest"
 version = "8.3.4"
 description = "pytest: simple powerful testing with Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.8"
 
@@ -163,6 +174,32 @@ tomli = {version = ">=1", markers = "python_version < \"3.11\""}
 
 [package.extras]
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
+
+[[package]]
+name = "pytest-env"
+version = "1.1.5"
+description = "pytest plugin that allows you to add environment variables."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+pytest = ">=8.3.3"
+tomli = {version = ">=2.0.1", markers = "python_version < \"3.11\""}
+
+[package.extras]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.6.1)", "pytest-mock (>=3.14)"]
+
+[[package]]
+name = "python-dotenv"
+version = "1.0.1"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "tomli"
@@ -191,7 +228,7 @@ python-versions = ">=3.8"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "bc91dc8b332a595d63222e86fa34ed5596246b878f9c1695e97aa27561d9e3d6"
+content-hash = "c19d12543170334fd034ebb621b0ba8048d6f0c83d3e0c3f1da7d03972bc2b09"
 
 [metadata.files]
 astroid = [
@@ -270,6 +307,9 @@ dill = [
     {file = "dill-0.3.9-py3-none-any.whl", hash = "sha256:468dff3b89520b474c0397703366b7b95eebe6303f108adf9b19da1f702be87a"},
     {file = "dill-0.3.9.tar.gz", hash = "sha256:81aa267dddf68cbfe8029c42ca9ec6a4ab3b22371d1c450abc54422577b4512c"},
 ]
+dotenv = [
+    {file = "dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9"},
+]
 exceptiongroup = [
     {file = "exceptiongroup-1.2.2-py3-none-any.whl", hash = "sha256:3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b"},
     {file = "exceptiongroup-1.2.2.tar.gz", hash = "sha256:47c2edf7c6738fafb49fd34290706d1a1a2f4d1c6df275526b62cbb4aa5393cc"},
@@ -309,6 +349,14 @@ pylint = [
 pytest = [
     {file = "pytest-8.3.4-py3-none-any.whl", hash = "sha256:50e16d954148559c9a74109af1eaf0c945ba2d8f30f0a3d3335edde19788b6f6"},
     {file = "pytest-8.3.4.tar.gz", hash = "sha256:965370d062bce11e73868e0335abac31b4d3de0e82f4007408d242b4f8610761"},
+]
+pytest-env = [
+    {file = "pytest_env-1.1.5-py3-none-any.whl", hash = "sha256:ce90cf8772878515c24b31cd97c7fa1f4481cd68d588419fd45f10ecaee6bc30"},
+    {file = "pytest_env-1.1.5.tar.gz", hash = "sha256:91209840aa0e43385073ac464a554ad2947cc2fd663a9debf88d03b01e0cc1cf"},
+]
+python-dotenv = [
+    {file = "python-dotenv-1.0.1.tar.gz", hash = "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca"},
+    {file = "python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"},
 ]
 tomli = [
     {file = "tomli-2.2.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:678e4fa69e4575eb77d103de3df8a895e1591b48e740211bd1067378c69e8249"},

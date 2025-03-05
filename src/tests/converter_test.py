@@ -1,6 +1,7 @@
 import unittest
 import os
 from converter import Converter
+from utils.config import FILE_PATH
 
 class TestConverter(unittest.TestCase):
     '''Test converter functionality'''
@@ -45,7 +46,7 @@ class TestConverter(unittest.TestCase):
     def test_conversion_returns_correct_ouput(self):
         '''Test that converting given data returns expected list of integers.'''
 
-        file = open(self.dir_name + '/convert_test_data.txt', 'r', encoding='utf-8')
+        file = open(FILE_PATH + '/convert_test_data.txt', 'r', encoding='utf-8')
         contents = file.readlines()
         ret = self.c.convert(contents)
         self.assertListEqual(ret, [11, 12, 14, 12, 14, 16, 14, 12, 11, 9, 11, 12, 11,

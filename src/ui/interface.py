@@ -64,7 +64,7 @@ class Interface:
         '''Menu when user wishes to train the model.'''
 
         filename = input('Please give the name of the file for training: ')
-        output = file_operations.read('/data/' + filename)
+        output = file_operations.read(filename)
         if not output[0]:
             print(output[1])
             print('Make sure the file name is correct and that file exists in data directory.')
@@ -87,9 +87,7 @@ class Interface:
         if self.trained:
             file = input('Give name for the file to be generated: ')
             if file == '':
-                file = '/data/music.txt'
-            else:
-                file = '/data/' + file
+                file = 'music.txt'
 
             length = int(input('Give the length of the melody (as 2/4 bars): '))
             amount = int(input('How many melodies you wish to generate? '))

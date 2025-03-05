@@ -10,6 +10,8 @@ packages = [{include = "algo_projekti"}]
 python = "^3.10"
 invoke = "^2.2.0"
 pylint = "^3.3.3"
+dotenv = "^0.9.9"
+pytest-env = "^1.1.5"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -19,3 +21,6 @@ coverage = "^7.6.10"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest_env]
+DATADIR = "src/tests/data"
