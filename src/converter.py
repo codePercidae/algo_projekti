@@ -125,7 +125,7 @@ class Converter:
             Numerical representations of the notes, in a list [int]
             If no viable symbol is found, returns empty list
         '''
-        unallowed = ' /<>"1234567890.~HLMOPSTuvzZ/n}{`'
+        unallowed = ' -/<>"1234567890.~HLMOPSTuvzZ/n}{`'
         note_numbers = []
         returned_notes = {}
         performance_marking = False
